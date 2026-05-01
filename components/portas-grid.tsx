@@ -27,6 +27,7 @@ type Porta = {
   type: string
   material: string
   badge?: string
+  price: number
   image: string
   options: PortaOptions
 }
@@ -34,24 +35,11 @@ type Porta = {
 const portas: Porta[] = [
   {
     id: "001",
-    name: "PET DIAMANTE",
-    type: "Pivotante",
-    material: "MDF Ultra",
-    badge: "Pronta entrega",
-    image: "/images/pet-diamante.png",
-    options: {
-      larguras: ["80", "90", "100"],
-      alturas: ["210", "240", "260", "280"],
-      espessuras: ["9", "11", "14"],
-      fechaduras: ["Magnética", "Rolete", "Multiponto"],
-    },
-  },
-  {
-    id: "002",
     name: "MADEIRA TAUARI",
-    type: "Embutida",
-    material: "Madeira Maciça",
+    type: "Giro e Correr",
+    material: "Madeira Natural · Caixaria Maciça",
     badge: "Pronta entrega",
+    price: 765,
     image: "/images/madeira-tauari.png",
     options: {
       larguras: ["70", "80", "90", "100"],
@@ -61,10 +49,26 @@ const portas: Porta[] = [
     },
   },
   {
+    id: "002",
+    name: "PET DIAMANTE",
+    type: "Giro e Correr",
+    material: "MDF Ultra ou WPC · Revestida",
+    badge: "Mais vendido",
+    price: 1290,
+    image: "/images/pet-diamante.png",
+    options: {
+      larguras: ["80", "90", "100"],
+      alturas: ["210", "240", "260", "280"],
+      espessuras: ["9", "11", "14"],
+      fechaduras: ["Magnética", "Rolete", "Multiponto"],
+    },
+  },
+  {
     id: "003",
-    name: "UV GELO",
-    type: "Vidro & Madeira",
-    material: "Freixo escurecido",
+    name: "LAQUEADA UV GELO",
+    type: "Giro e Correr",
+    material: "MDF Ultra · Pintura UV",
+    price: 1085,
     image: "/images/uv-gelo.png",
     options: {
       larguras: ["80", "90", "100"],
@@ -255,7 +259,7 @@ export function PortasGrid() {
               className="group relative flex flex-col bg-background"
             >
               {/* Imagem */}
-              <div className="relative aspect-[3/4] overflow-hidden bg-muted lg:aspect-auto lg:h-72">
+              <div className="relative aspect-[3/4] overflow-hidden bg-muted">
                 <Image
                   src={porta.image || "/placeholder.svg"}
                   alt={`Porta ${porta.name} — ${porta.material}`}
@@ -267,15 +271,47 @@ export function PortasGrid() {
                   <span className="inline-block h-1.5 w-1.5 bg-background" aria-hidden />
                   BFP — {porta.id}
                 </div>
-                {porta.badge && (
-                  <div className="absolute bottom-4 left-4 border border-background/30 bg-background/10 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.2em] text-background/90 backdrop-blur-sm">
-                    {porta.badge}
+
+                {porta.badge === "Mais vendido" && (
+                  <div className="absolute right-0 top-4 bg-foreground px-3 py-1 font-mono text-[9px] uppercase tracking-[0.2em] text-background">
+                    Mais vendido
                   </div>
                 )}
+                {porta.badge === "Pronta entrega" && (
+                  <div className="absolute bottom-4 left-4 border border-background/30 bg-background/10 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.2em] text-background/90 backdrop-blur-sm">
+                    Pronta entrega
+                  </div>
+                )}
+
+                {/* Overlay de info no desktop: sobrepõe o rodapé da imagem */}
+                <div className="absolute inset-x-0 bottom-0 hidden border-t border-border bg-background px-6 py-5 lg:flex lg:items-center lg:justify-between lg:gap-4">
+                  <div className="flex min-w-0 flex-col gap-1">
+                    <h3 className="text-sm font-medium uppercase tracking-[0.18em] text-foreground">
+                      {porta.name}
+                    </h3>
+                    <p className="line-clamp-1 text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+                      {porta.type} · {porta.material}
+                    </p>
+                    <p className="mt-1 font-mono text-[11px] text-muted-foreground">
+                      a partir de{" "}
+                      <span className="text-foreground font-medium">
+                        {porta.price.toLocaleString("pt-BR", { style: "currency", currency: "BRL", minimumFractionDigits: 0 })}
+                      </span>
+                    </p>
+                  </div>
+                  <a
+                    href={`https://wa.me/554832200195?text=${encodeURIComponent(`Olá! Vi a porta ${porta.name} no site de vocês e gostaria de um orçamento.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="shrink-0 border border-foreground bg-foreground px-4 py-2 font-mono text-[9px] uppercase tracking-[0.2em] text-background transition-colors hover:bg-background hover:text-foreground"
+                  >
+                    Orçar no WhatsApp
+                  </a>
+                </div>
               </div>
 
-              {/* Info + CTA */}
-              <div className="flex items-center justify-between gap-4 border-t border-border p-6 lg:p-8">
+              {/* Info no mobile: abaixo da imagem */}
+              <div className="flex flex-col gap-4 border-t border-border p-6 lg:hidden">
                 <div className="flex min-w-0 flex-col gap-1">
                   <h3 className="text-sm font-medium uppercase tracking-[0.18em] text-foreground">
                     {porta.name}
@@ -283,8 +319,21 @@ export function PortasGrid() {
                   <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
                     {porta.type} · {porta.material}
                   </p>
+                  <p className="mt-1 font-mono text-[11px] text-muted-foreground">
+                    a partir de{" "}
+                    <span className="text-foreground font-medium">
+                      {porta.price.toLocaleString("pt-BR", { style: "currency", currency: "BRL", minimumFractionDigits: 0 })}
+                    </span>
+                  </p>
                 </div>
-
+                <a
+                  href={`https://wa.me/554832200195?text=${encodeURIComponent(`Olá! Vi a porta ${porta.name} no site de vocês e gostaria de um orçamento.`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center border border-foreground bg-foreground px-4 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-background transition-colors hover:bg-background hover:text-foreground"
+                >
+                  Orçar no WhatsApp
+                </a>
               </div>
             </motion.article>
           ))}

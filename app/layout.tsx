@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { WhatsappFab } from "@/components/whatsapp-fab"
+import { SmoothScroll } from "@/components/smooth-scroll"
 import "./globals.css"
 
 const geist = Geist({
@@ -16,6 +18,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://brasilforte.com"),
   title: "Brasil Forte Portas — Portas de alto padrão para arquitetura",
   description:
     "Especialistas em portas resistentes à maresia, cupim e umidade. Kits completos de PET, MDF Ultra e Madeira Maciça com instalação própria em toda a Grande Florianópolis e Litoral de SC.",
@@ -26,7 +29,30 @@ export const metadata: Metadata = {
     "MDF Ultra",
     "portas PET Itapema",
   ],
-  generator: "v0.app",
+  openGraph: {
+    type: "website",
+    url: "https://brasilforte.com",
+    siteName: "Brasil Forte Portas",
+    title: "Brasil Forte Portas — Portas de alto padrão para arquitetura",
+    description:
+      "Kits completos de PET, MDF Ultra e Madeira Maciça com instalação técnica em toda a Grande Florianópolis e Litoral de SC.",
+    images: [
+      {
+        url: "/images/branca-apartamento.png",
+        width: 1200,
+        height: 630,
+        alt: "Brasil Forte Portas — Porta laqueada em ambiente residencial",
+      },
+    ],
+    locale: "pt_BR",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Brasil Forte Portas — Portas de alto padrão para arquitetura",
+    description:
+      "Kits completos de PET, MDF Ultra e Madeira Maciça com instalação técnica em toda a Grande Florianópolis e Litoral de SC.",
+    images: ["/images/branca-apartamento.png"],
+  },
 }
 
 export default function RootLayout({
@@ -37,7 +63,9 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`${geist.variable} ${geistMono.variable} bg-background`}>
       <body className="font-sans antialiased">
+        <SmoothScroll />
         {children}
+        <WhatsappFab />
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
     </html>

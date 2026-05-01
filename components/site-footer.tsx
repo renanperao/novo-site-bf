@@ -81,12 +81,14 @@ export function SiteFooter() {
             <span>· Desde 2022 entregando o melhor em aberturas técnicas no Litoral de SC</span>
           </div>
           <div className="flex items-center gap-6">
-            <Link href="#" className="hover:text-background">
+            <a
+              href="https://www.instagram.com/portasbrasilforte/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-background"
+            >
               Instagram
-            </Link>
-            <Link href="#" className="hover:text-background">
-              Behance
-            </Link>
+            </a>
             <span>© {new Date().getFullYear()}</span>
           </div>
         </div>

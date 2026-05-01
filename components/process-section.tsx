@@ -15,7 +15,7 @@ const steps = [
     number: "02",
     title: "FABRICAÇÃO",
     description:
-      "Produtos selecionados e processados em fábricas espeializadas em portas. Controle de umidade, acabamento manual e ferragens em aço inox.",
+      "Produtos selecionados e processados em fábricas especializadas em portas. Controle de umidade, acabamento manual e ferragens em aço inox.",
   },
   {
     number: "03",

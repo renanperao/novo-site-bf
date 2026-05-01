@@ -96,7 +96,7 @@ export function HeroSection() {
             </div>
             <div className="flex items-end justify-between gap-6">
               <p className="max-w-xs text-[11px] uppercase tracking-[0.2em] text-background/90">
-                Madeira maciça · Acabamento natural
+                Revestimento em polímero · Acabamento super branco
               </p>
               <p className="hidden font-mono text-[10px] uppercase tracking-[0.2em] text-background/80 sm:block">
                 26°N · BIG/SC
