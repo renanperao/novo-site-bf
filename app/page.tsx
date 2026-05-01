@@ -2,7 +2,6 @@ import { SiteNavbar } from "@/components/site-navbar"
 import { HeroSection } from "@/components/hero-section"
 import { PortasGrid } from "@/components/portas-grid"
 import { ProcessSection } from "@/components/process-section"
-import { ConfiguratorSection } from "@/components/configurator-section"
 import { SiteFooter } from "@/components/site-footer"
 
 export default function Page() {
@@ -12,7 +11,6 @@ export default function Page() {
       <HeroSection />
       <PortasGrid />
       <ProcessSection />
-      <ConfiguratorSection />
       <SiteFooter />
     </main>
   )

@@ -8,7 +8,7 @@ const easing = [0.22, 1, 0.36, 1] as const
 
 export function SiteFooter() {
   return (
-    <footer id="contato" className="bg-foreground text-background">
+    <footer id="contato" className="scroll-mt-16 bg-foreground text-background">
       <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
         <div className="grid grid-cols-1 gap-12 border-b border-background/15 pb-16 lg:grid-cols-12 lg:gap-16 lg:pb-20">
           <motion.div
@@ -18,7 +18,7 @@ export function SiteFooter() {
             transition={{ duration: 0.8, ease: easing }}
             className="lg:col-span-7"
           >
-            <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-background/60">05 / Contato</p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-background/60">04 / Contato</p>
             <h2 className="mt-6 text-balance text-3xl font-medium uppercase leading-[1] tracking-[-0.02em] sm:text-5xl lg:text-6xl">
               Vamos abrir
               <br />

@@ -27,7 +27,7 @@ const steps = [
 
 export function ProcessSection() {
   return (
-    <section id="processo" className="border-b border-border bg-background py-24 lg:py-32">
+    <section id="processo" className="scroll-mt-16 border-b border-border bg-background py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         {/* Header */}
         <div className="grid grid-cols-1 gap-8 border-b border-border pb-12 lg:grid-cols-12 lg:gap-16 lg:pb-16">
@@ -39,7 +39,7 @@ export function ProcessSection() {
           </div>
           <div className="lg:col-span-9">
             <h2 className="text-balance text-3xl font-medium uppercase leading-[1] tracking-[-0.02em] text-foreground sm:text-5xl lg:text-6xl">
-              Da medida à intalação final
+              Da medida à instalação final
             </h2>
           </div>
         </div>
