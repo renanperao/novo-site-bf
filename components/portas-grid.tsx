@@ -285,24 +285,6 @@ export function PortasGrid() {
                   </p>
                 </div>
 
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <button
-                      type="button"
-                      aria-label={`Configurar porta ${porta.name}`}
-                      className="group/btn inline-flex shrink-0 items-center gap-2 border border-border px-3 py-2 text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
-                    >
-                      Configurar
-                      <ArrowUpRight className="size-3 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-                    </button>
-                  </DialogTrigger>
-                  <DialogContent
-                    showCloseButton={false}
-                    className="gap-0 rounded-none border-border p-0 sm:max-w-3xl"
-                  >
-                    <ProductConfigurator porta={porta} />
-                  </DialogContent>
-                </Dialog>
               </div>
             </motion.article>
           ))}
