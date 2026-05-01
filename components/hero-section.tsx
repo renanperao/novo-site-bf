@@ -55,7 +55,7 @@ export function HeroSection() {
               href="#portas"
               className="group inline-flex items-center gap-3 border border-foreground bg-foreground px-6 py-3.5 text-[11px] font-medium uppercase tracking-[0.22em] text-background transition-colors hover:bg-background hover:text-foreground"
             >
-              Ver coleção
+              Ver produtos
               <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
             <Link
