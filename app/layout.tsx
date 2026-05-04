@@ -53,6 +53,12 @@ export const metadata: Metadata = {
       "Kits completos de PET, MDF Ultra e Madeira Maciça com instalação técnica em toda a Grande Florianópolis e Litoral de SC.",
     images: ["/images/branca-apartamento.png"],
   },
+  icons: {
+    icon: [
+      { url: "/favicon-black.png", media: "(prefers-color-scheme: light)" },
+      { url: "/favicon-white.png", media: "(prefers-color-scheme: dark)" },
+    ],
+  },
 }
 
 export default function RootLayout({
