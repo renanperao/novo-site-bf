@@ -38,9 +38,9 @@ export const metadata: Metadata = {
       "Kits completos de PET, MDF Ultra e Madeira Maciça com instalação técnica em toda a Grande Florianópolis e Litoral de SC.",
     images: [
       {
-        url: "/images/branca-apartamento.png",
-        width: 1200,
-        height: 630,
+        url: "/images/hero-apartamento-minimalista.png",
+        width: 1280,
+        height: 944,
         alt: "Brasil Forte Portas — Porta laqueada em ambiente residencial",
       },
     ],
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     title: "Brasil Forte Portas — Portas de alto padrão para arquitetura",
     description:
       "Kits completos de PET, MDF Ultra e Madeira Maciça com instalação técnica em toda a Grande Florianópolis e Litoral de SC.",
-    images: ["/images/branca-apartamento.png"],
+    images: ["/images/hero-apartamento-minimalista.png"],
   },
   icons: {
     icon: [

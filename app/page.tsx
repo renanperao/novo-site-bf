@@ -3,12 +3,29 @@ import { HeroSection } from "@/components/hero-section"
 import { PortasGrid } from "@/components/portas-grid"
 import { ProcessSection } from "@/components/process-section"
 import { SiteFooter } from "@/components/site-footer"
+import { carregarCatalogo } from "@/lib/catalogo.server"
 
-export default function Page() {
+export default async function Page() {
+  const catalogo = await carregarCatalogo()
+  const disponiveis = catalogo.modelos.filter((m) => m.disponivel)
+  const cores = disponiveis.map((m) => ({
+    slug: m.slug,
+    nome: m.nome,
+    hex: m.hex,
+    preco: m.precoBase,
+  }))
+  const coresConsulta = catalogo.modelos
+    .filter((m) => !m.disponivel)
+    .map((m) => ({ slug: m.slug, nome: m.nome, hex: m.hex, preco: m.precoBase }))
+  const precos = disponiveis
+    .map((m) => m.precoBase)
+    .filter((p): p is number => typeof p === "number")
+  const aPartirDe = precos.length ? Math.min(...precos) : 0
+
   return (
     <main className="min-h-screen bg-background text-foreground">
       <SiteNavbar />
-      <HeroSection />
+      <HeroSection cores={cores} coresConsulta={coresConsulta} aPartirDe={aPartirDe} />
       <PortasGrid />
       <ProcessSection />
       <SiteFooter />

@@ -1,11 +1,17 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { usePathname } from "next/navigation"
 
 const WA_NUMBER = "554832200195"
 const WA_URL = `https://wa.me/${WA_NUMBER}`
 
 export function WhatsappFab() {
+  const pathname = usePathname()
+  // No configurador o CTA do WhatsApp vive na barra fixa inferior e no sidebar;
+  // o FAB sobreporia esses elementos.
+  if (pathname?.startsWith("/configurador")) return null
+
   return (
     <motion.a
       href={WA_URL}

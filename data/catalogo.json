@@ -1,0 +1,807 @@
+{
+  "geradoEm": "2026-06-20T15:02:24.070Z",
+  "modelos": [
+    {
+      "slug": "branco-diamante-pet",
+      "nome": "Branco Diamante",
+      "nomeCompleto": "Kit Porta Branco Diamante (PET)",
+      "material": "Revestimento PET",
+      "hex": "#FFFFFF",
+      "disponivel": true,
+      "precoBase": 1290,
+      "adicionalCorrer": 530,
+      "larguras": [
+        60,
+        70,
+        80,
+        90,
+        100
+      ],
+      "batentes": [
+        "11 a 14",
+        "13 a 16",
+        "15 a 18",
+        "17 a 20",
+        "19 a 22",
+        "21 a 24"
+      ],
+      "variacoes": [
+        {
+          "largura": 60,
+          "batente": "11 a 14",
+          "preco": 1290,
+          "id": "394348174"
+        },
+        {
+          "largura": 60,
+          "batente": "13 a 16",
+          "preco": 1330,
+          "id": "394348177"
+        },
+        {
+          "largura": 60,
+          "batente": "15 a 18",
+          "preco": 1365,
+          "id": "394348180"
+        },
+        {
+          "largura": 60,
+          "batente": "17 a 20",
+          "preco": 1400,
+          "id": "394348183"
+        },
+        {
+          "largura": 60,
+          "batente": "19 a 22",
+          "preco": 1430,
+          "id": "394348186"
+        },
+        {
+          "largura": 60,
+          "batente": "21 a 24",
+          "preco": 1445,
+          "id": "394348190"
+        },
+        {
+          "largura": 70,
+          "batente": "11 a 14",
+          "preco": 1290,
+          "id": "394348193"
+        },
+        {
+          "largura": 70,
+          "batente": "13 a 16",
+          "preco": 1330,
+          "id": "394348196"
+        },
+        {
+          "largura": 70,
+          "batente": "15 a 18",
+          "preco": 1365,
+          "id": "394348199"
+        },
+        {
+          "largura": 70,
+          "batente": "17 a 20",
+          "preco": 1400,
+          "id": "394348202"
+        },
+        {
+          "largura": 70,
+          "batente": "19 a 22",
+          "preco": 1430,
+          "id": "394348205"
+        },
+        {
+          "largura": 70,
+          "batente": "21 a 24",
+          "preco": 1445,
+          "id": "394348208"
+        },
+        {
+          "largura": 80,
+          "batente": "11 a 14",
+          "preco": 1340,
+          "id": "394348211"
+        },
+        {
+          "largura": 80,
+          "batente": "13 a 16",
+          "preco": 1375,
+          "id": "394348214"
+        },
+        {
+          "largura": 80,
+          "batente": "15 a 18",
+          "preco": 1410,
+          "id": "394348217"
+        },
+        {
+          "largura": 80,
+          "batente": "17 a 20",
+          "preco": 1445,
+          "id": "394348220"
+        },
+        {
+          "largura": 80,
+          "batente": "19 a 22",
+          "preco": 1480,
+          "id": "394348224"
+        },
+        {
+          "largura": 80,
+          "batente": "21 a 24",
+          "preco": 1490,
+          "id": "394348227"
+        },
+        {
+          "largura": 90,
+          "batente": "11 a 14",
+          "preco": 1380,
+          "id": "394348230"
+        },
+        {
+          "largura": 90,
+          "batente": "13 a 16",
+          "preco": 1415,
+          "id": "394348233"
+        },
+        {
+          "largura": 90,
+          "batente": "15 a 18",
+          "preco": 1450,
+          "id": "394348236"
+        },
+        {
+          "largura": 90,
+          "batente": "17 a 20",
+          "preco": 1485,
+          "id": "394348239"
+        },
+        {
+          "largura": 90,
+          "batente": "19 a 22",
+          "preco": 1515,
+          "id": "394348242"
+        },
+        {
+          "largura": 90,
+          "batente": "21 a 24",
+          "preco": 1530,
+          "id": "394348245"
+        },
+        {
+          "largura": 100,
+          "batente": "11 a 14",
+          "preco": 1550,
+          "id": "394348248"
+        },
+        {
+          "largura": 100,
+          "batente": "13 a 16",
+          "preco": 1590,
+          "id": "394348251"
+        },
+        {
+          "largura": 100,
+          "batente": "15 a 18",
+          "preco": 1620,
+          "id": "394348254"
+        },
+        {
+          "largura": 100,
+          "batente": "17 a 20",
+          "preco": 1655,
+          "id": "394348257"
+        },
+        {
+          "largura": 100,
+          "batente": "19 a 22",
+          "preco": 1690,
+          "id": "394348260"
+        },
+        {
+          "largura": 100,
+          "batente": "21 a 24",
+          "preco": 1700,
+          "id": "394348263"
+        }
+      ]
+    },
+    {
+      "slug": "branco-gelo",
+      "nome": "Branco Gelo",
+      "nomeCompleto": "Kit Porta Branco Gelo",
+      "material": "Acabamento branco gelo",
+      "hex": "#ECEFF0",
+      "disponivel": true,
+      "precoBase": 1085,
+      "adicionalCorrer": 530,
+      "larguras": [
+        60,
+        70,
+        80,
+        90,
+        100
+      ],
+      "batentes": [
+        "11 a 14",
+        "13 a 16",
+        "15 a 18",
+        "17 a 20",
+        "19 a 22",
+        "21 a 24"
+      ],
+      "variacoes": [
+        {
+          "largura": 60,
+          "batente": "11 a 14",
+          "preco": 1085,
+          "id": "394326101"
+        },
+        {
+          "largura": 60,
+          "batente": "13 a 16",
+          "preco": 1120,
+          "id": "394326104"
+        },
+        {
+          "largura": 60,
+          "batente": "15 a 18",
+          "preco": 1145,
+          "id": "394326107"
+        },
+        {
+          "largura": 60,
+          "batente": "17 a 20",
+          "preco": 1180,
+          "id": "394326110"
+        },
+        {
+          "largura": 60,
+          "batente": "19 a 22",
+          "preco": 1210,
+          "id": "394326113"
+        },
+        {
+          "largura": 60,
+          "batente": "21 a 24",
+          "preco": 1220,
+          "id": "394326118"
+        },
+        {
+          "largura": 70,
+          "batente": "11 a 14",
+          "preco": 1085,
+          "id": "394326122"
+        },
+        {
+          "largura": 70,
+          "batente": "13 a 16",
+          "preco": 1120,
+          "id": "394326127"
+        },
+        {
+          "largura": 70,
+          "batente": "15 a 18",
+          "preco": 1145,
+          "id": "394326131"
+        },
+        {
+          "largura": 70,
+          "batente": "17 a 20",
+          "preco": 1180,
+          "id": "394326135"
+        },
+        {
+          "largura": 70,
+          "batente": "19 a 22",
+          "preco": 1210,
+          "id": "394326138"
+        },
+        {
+          "largura": 70,
+          "batente": "21 a 24",
+          "preco": 1220,
+          "id": "394326141"
+        },
+        {
+          "largura": 80,
+          "batente": "11 a 14",
+          "preco": 1085,
+          "id": "394326144"
+        },
+        {
+          "largura": 80,
+          "batente": "13 a 16",
+          "preco": 1120,
+          "id": "394326147"
+        },
+        {
+          "largura": 80,
+          "batente": "15 a 18",
+          "preco": 1145,
+          "id": "394326151"
+        },
+        {
+          "largura": 80,
+          "batente": "17 a 20",
+          "preco": 1180,
+          "id": "394326155"
+        },
+        {
+          "largura": 80,
+          "batente": "19 a 22",
+          "preco": 1210,
+          "id": "394326159"
+        },
+        {
+          "largura": 80,
+          "batente": "21 a 24",
+          "preco": 1220,
+          "id": "394326164"
+        },
+        {
+          "largura": 90,
+          "batente": "11 a 14",
+          "preco": 1085,
+          "id": "394326169"
+        },
+        {
+          "largura": 90,
+          "batente": "13 a 16",
+          "preco": 1120,
+          "id": "394326172"
+        },
+        {
+          "largura": 90,
+          "batente": "15 a 18",
+          "preco": 1145,
+          "id": "394326175"
+        },
+        {
+          "largura": 90,
+          "batente": "17 a 20",
+          "preco": 1180,
+          "id": "394326179"
+        },
+        {
+          "largura": 90,
+          "batente": "19 a 22",
+          "preco": 1210,
+          "id": "394326183"
+        },
+        {
+          "largura": 90,
+          "batente": "21 a 24",
+          "preco": 1220,
+          "id": "394326186"
+        },
+        {
+          "largura": 100,
+          "batente": "11 a 14",
+          "preco": 1085,
+          "id": "394326189"
+        },
+        {
+          "largura": 100,
+          "batente": "13 a 16",
+          "preco": 1120,
+          "id": "394326193"
+        },
+        {
+          "largura": 100,
+          "batente": "15 a 18",
+          "preco": 1145,
+          "id": "394326197"
+        },
+        {
+          "largura": 100,
+          "batente": "17 a 20",
+          "preco": 1180,
+          "id": "394326200"
+        },
+        {
+          "largura": 100,
+          "batente": "19 a 22",
+          "preco": 1210,
+          "id": "394326206"
+        },
+        {
+          "largura": 100,
+          "batente": "21 a 24",
+          "preco": 1220,
+          "id": "394326210"
+        }
+      ]
+    },
+    {
+      "slug": "branco-uv",
+      "nome": "Branco UV",
+      "nomeCompleto": "Kit Porta Branco UV",
+      "material": "Pintura UV",
+      "hex": "#F6F6F4",
+      "disponivel": true,
+      "precoBase": 1150,
+      "adicionalCorrer": 790,
+      "larguras": [
+        60,
+        70,
+        80,
+        90,
+        100
+      ],
+      "batentes": [
+        "10 a 15",
+        "13 a 18",
+        "16 a 21",
+        "19 a 24",
+        "22 a 27",
+        "10 a 15 (MPD)",
+        "13 a 18 (MDP)",
+        "16 a 21 (MDP)",
+        "19 a 24 (MDP)",
+        "22 a 27 (MDP)"
+      ],
+      "variacoes": [
+        {
+          "largura": 60,
+          "batente": "10 a 15",
+          "preco": 1150,
+          "id": "393777709"
+        },
+        {
+          "largura": 60,
+          "batente": "13 a 18",
+          "preco": 1200,
+          "id": "393777712"
+        },
+        {
+          "largura": 60,
+          "batente": "16 a 21",
+          "preco": 1255,
+          "id": "393777715"
+        },
+        {
+          "largura": 60,
+          "batente": "19 a 24",
+          "preco": 1310,
+          "id": "393777718"
+        },
+        {
+          "largura": 60,
+          "batente": "22 a 27",
+          "preco": 1360,
+          "id": "393777721"
+        },
+        {
+          "largura": 70,
+          "batente": "10 a 15",
+          "preco": 1160,
+          "id": "393786026"
+        },
+        {
+          "largura": 70,
+          "batente": "13 a 18",
+          "preco": 1210,
+          "id": "393786029"
+        },
+        {
+          "largura": 70,
+          "batente": "16 a 21",
+          "preco": 1265,
+          "id": "393786032"
+        },
+        {
+          "largura": 70,
+          "batente": "19 a 24",
+          "preco": 1320,
+          "id": "393786036"
+        },
+        {
+          "largura": 70,
+          "batente": "22 a 27",
+          "preco": 1370,
+          "id": "393786039"
+        },
+        {
+          "largura": 80,
+          "batente": "10 a 15",
+          "preco": 1170,
+          "id": "393786042"
+        },
+        {
+          "largura": 80,
+          "batente": "13 a 18",
+          "preco": 1225,
+          "id": "393786045"
+        },
+        {
+          "largura": 80,
+          "batente": "16 a 21",
+          "preco": 1275,
+          "id": "393786048"
+        },
+        {
+          "largura": 80,
+          "batente": "19 a 24",
+          "preco": 1330,
+          "id": "393786051"
+        },
+        {
+          "largura": 80,
+          "batente": "22 a 27",
+          "preco": 1380,
+          "id": "393786054"
+        },
+        {
+          "largura": 90,
+          "batente": "10 a 15",
+          "preco": 1210,
+          "id": "393786058"
+        },
+        {
+          "largura": 90,
+          "batente": "13 a 18",
+          "preco": 1260,
+          "id": "393786062"
+        },
+        {
+          "largura": 90,
+          "batente": "16 a 21",
+          "preco": 1315,
+          "id": "393786067"
+        },
+        {
+          "largura": 90,
+          "batente": "19 a 24",
+          "preco": 1370,
+          "id": "393786070"
+        },
+        {
+          "largura": 90,
+          "batente": "22 a 27",
+          "preco": 1420,
+          "id": "393786073"
+        },
+        {
+          "largura": 100,
+          "batente": "10 a 15 (MPD)",
+          "preco": 1535,
+          "id": "393786076"
+        },
+        {
+          "largura": 100,
+          "batente": "13 a 18 (MDP)",
+          "preco": 1590,
+          "id": "393786079"
+        },
+        {
+          "largura": 100,
+          "batente": "16 a 21 (MDP)",
+          "preco": 1640,
+          "id": "393786082"
+        },
+        {
+          "largura": 100,
+          "batente": "19 a 24 (MDP)",
+          "preco": 1690,
+          "id": "393786085"
+        },
+        {
+          "largura": 100,
+          "batente": "22 a 27 (MDP)",
+          "preco": 1745,
+          "id": "393786088"
+        }
+      ]
+    },
+    {
+      "slug": "cedro-rosso",
+      "nome": "Cedro Rosso",
+      "nomeCompleto": "Cedro Rosso",
+      "material": "Revestimento Melamínico Amadeirado",
+      "hex": "#8B4513",
+      "disponivel": false,
+      "precoBase": null,
+      "adicionalCorrer": 0,
+      "larguras": [],
+      "batentes": [],
+      "variacoes": []
+    },
+    {
+      "slug": "louro-freijo",
+      "nome": "Louro Freijó",
+      "nomeCompleto": "Louro Freijó",
+      "material": "Revestimento Melamínico Amadeirado",
+      "hex": "#C4A35A",
+      "disponivel": false,
+      "precoBase": null,
+      "adicionalCorrer": 0,
+      "larguras": [],
+      "batentes": [],
+      "variacoes": []
+    },
+    {
+      "slug": "preto",
+      "nome": "Preto",
+      "nomeCompleto": "Preto",
+      "material": "Revestimento Renolit",
+      "hex": "#1A1A1A",
+      "disponivel": false,
+      "precoBase": null,
+      "adicionalCorrer": 0,
+      "larguras": [],
+      "batentes": [],
+      "variacoes": []
+    },
+    {
+      "slug": "cinza-chumbo",
+      "nome": "Cinza Chumbo",
+      "nomeCompleto": "Cinza Chumbo",
+      "material": "Revestimento PET",
+      "hex": "#36454F",
+      "disponivel": false,
+      "precoBase": null,
+      "adicionalCorrer": 0,
+      "larguras": [],
+      "batentes": [],
+      "variacoes": []
+    },
+    {
+      "slug": "cinza-claro",
+      "nome": "Cinza Claro",
+      "nomeCompleto": "Cinza Claro",
+      "material": "Revestimento PET",
+      "hex": "#A9A9A9",
+      "disponivel": false,
+      "precoBase": null,
+      "adicionalCorrer": 0,
+      "larguras": [],
+      "batentes": [],
+      "variacoes": []
+    },
+    {
+      "slug": "cuprum",
+      "nome": "Cuprum",
+      "nomeCompleto": "Cuprum",
+      "material": "Flexy",
+      "hex": "#B87333",
+      "disponivel": false,
+      "precoBase": null,
+      "adicionalCorrer": 0,
+      "larguras": [],
+      "batentes": [],
+      "variacoes": []
+    },
+    {
+      "slug": "azurita",
+      "nome": "Azurita",
+      "nomeCompleto": "Azurita",
+      "material": "Flexy",
+      "hex": "#1E3A5F",
+      "disponivel": false,
+      "precoBase": null,
+      "adicionalCorrer": 0,
+      "larguras": [],
+      "batentes": [],
+      "variacoes": []
+    },
+    {
+      "slug": "paladio",
+      "nome": "Paládio",
+      "nomeCompleto": "Paládio",
+      "material": "Flexy",
+      "hex": "#BEC2CB",
+      "disponivel": false,
+      "precoBase": null,
+      "adicionalCorrer": 0,
+      "larguras": [],
+      "batentes": [],
+      "variacoes": []
+    },
+    {
+      "slug": "malaquita",
+      "nome": "Malaquita",
+      "nomeCompleto": "Malaquita",
+      "material": "Flexy",
+      "hex": "#0B6623",
+      "disponivel": false,
+      "precoBase": null,
+      "adicionalCorrer": 0,
+      "larguras": [],
+      "batentes": [],
+      "variacoes": []
+    },
+    {
+      "slug": "alabastro",
+      "nome": "Alabastro",
+      "nomeCompleto": "Alabastro",
+      "material": "Flexy",
+      "hex": "#F2E8D4",
+      "disponivel": false,
+      "precoBase": null,
+      "adicionalCorrer": 0,
+      "larguras": [],
+      "batentes": [],
+      "variacoes": []
+    }
+  ],
+  "fechaduras": [
+    {
+      "id": "roseta-quadrada",
+      "nome": "813/35 Roseta Quadrada 1 Interna Inox",
+      "nomeCompleto": "Stam 813/35 Roseta Quadrada 1 Inox",
+      "preco": 110,
+      "adicional": 0,
+      "foto": "/images/fechadura-813-35.webp"
+    },
+    {
+      "id": "roseta-redonda",
+      "nome": "813/21 Roseta Redonda Interna Inox",
+      "nomeCompleto": "Stam 813/21 Roseta Redonda Inox",
+      "preco": 80,
+      "adicional": -30,
+      "foto": "/images/fechadura-813-21.webp"
+    },
+    {
+      "id": "roseta-redonda-escovada",
+      "nome": "813/39 Roseta Redonda Interna Inox Escovado",
+      "nomeCompleto": "Stam 813/39 Roseta Redonda Inox Escovado",
+      "preco": 170,
+      "adicional": 60,
+      "foto": "/images/fechadura-813-39.webp"
+    },
+    {
+      "id": "home-ix310",
+      "nome": "Home ix310 Roseta Redonda Externa Inox Escovado",
+      "nomeCompleto": "Home ix310 Roseta Redonda Inox Escovado",
+      "preco": 180,
+      "adicional": 70,
+      "foto": "/images/fechadura-ix310.webp"
+    }
+  ],
+  "descontoSemFechadura": 70,
+  "instalacoes": {
+    "correr": {
+      "id": "394339871",
+      "nome": "Instalação Porta Interna de Correr",
+      "preco": 350
+    },
+    "giro": {
+      "id": "394339818",
+      "nome": "Instalação Porta Interna de Giro",
+      "preco": 300
+    }
+  },
+  "batenteAvulso": {
+    "nome": "Batentes e Vistas em Tauari",
+    "opcoes": [
+      {
+        "id": "343344586",
+        "espessura": "14cm",
+        "preco": 310
+      },
+      {
+        "id": "343344591",
+        "espessura": "16cm",
+        "preco": 330
+      },
+      {
+        "id": "343344598",
+        "espessura": "18cm",
+        "preco": 350
+      },
+      {
+        "id": "343344602",
+        "espessura": "20cm",
+        "preco": 370
+      }
+    ]
+  },
+  "prendePorta": {
+    "id": "354662383",
+    "nome": "Prende Porta Magnético Slim",
+    "preco": 45
+  }
+}

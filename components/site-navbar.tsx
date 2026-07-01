@@ -6,9 +6,10 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 
 const navItems = [
-  { label: "PORTAS", href: "#portas" },
-  { label: "PROCESSO", href: "#processo" },
-  { label: "CONTATO", href: "#contato" },
+  { label: "PORTAS", href: "/#portas" },
+  { label: "CONFIGURADOR", href: "/configurador" },
+  { label: "PROCESSO", href: "/#processo" },
+  { label: "CONTATO", href: "/#contato" },
 ]
 
 export function SiteNavbar() {
@@ -53,7 +54,7 @@ export function SiteNavbar() {
           size="sm"
           className="h-8 rounded-none bg-foreground px-4 text-[11px] font-medium uppercase tracking-[0.22em] text-background hover:bg-foreground/90"
         >
-          <Link href="#contato">Orçamento</Link>
+          <Link href="/configurador">Orçamento</Link>
         </Button>
       </nav>
     </motion.header>
