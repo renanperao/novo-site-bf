@@ -19,22 +19,18 @@ const TIPOS: { id: TipoPorta; nome: string }[] = [
 export function PreConfiguradorCard({
   cores,
   coresConsulta,
-  aPartirDe,
 }: {
   cores: Cor[]
   coresConsulta: Cor[]
-  aPartirDe: number
 }) {
   const [tipo, setTipo] = useState<TipoPorta>("giro")
-  // Nenhuma cor pré-selecionada: o "a partir de" genérico não deve ficar preso a
-  // um modelo específico. Ao escolher uma cor, o preço passa a ser o dela.
+  // Sem cor pré-selecionada e SEM preço logo de cara: o preço só aparece depois
+  // que o cliente escolhe uma cor (aí mostra o preço dela, ou "sob consulta").
   const [corSlug, setCorSlug] = useState<string>("")
 
   const href = `/configurador?tipo=${tipo}${corSlug ? `&cor=${corSlug}` : ""}`
   const corSel = [...cores, ...coresConsulta].find((c) => c.slug === corSlug)
   const corNome = corSel?.nome
-  // Cor escolhida → preço dela (null = sob consulta); nada escolhido → mínimo geral.
-  const precoSel: number | null = corSel ? corSel.preco : aPartirDe
 
   return (
     <div className="border border-border bg-background p-6 lg:p-7">
@@ -125,20 +121,26 @@ export function PreConfiguradorCard({
         </div>
       )}
 
-      {/* Preço + CTA */}
+      {/* Preço + CTA — o preço só aparece depois que uma cor é escolhida */}
       <div className="mt-6 border-t border-border pt-5">
-        <div className="flex items-baseline justify-between">
-          <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-muted-foreground">
-            {precoSel === null ? "Preço" : "A partir de"}
-          </span>
-          {precoSel === null ? (
-            <span className="text-sm font-medium uppercase tracking-[-0.01em]">
-              Sob consulta
+        {corSel ? (
+          <div className="flex items-baseline justify-between">
+            <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-muted-foreground">
+              {corSel.preco === null ? "Preço" : "A partir de"}
             </span>
-          ) : (
-            <span className="text-lg tabular-nums">{formatBRL(precoSel)}</span>
-          )}
-        </div>
+            {corSel.preco === null ? (
+              <span className="text-sm font-medium uppercase tracking-[-0.01em]">
+                Sob consulta
+              </span>
+            ) : (
+              <span className="text-lg tabular-nums">{formatBRL(corSel.preco)}</span>
+            )}
+          </div>
+        ) : (
+          <p className="text-xs text-muted-foreground">
+            Escolha uma cor para ver o preço.
+          </p>
+        )}
         <Link
           href={href}
           className="group mt-4 inline-flex w-full items-center justify-center gap-2 border border-foreground bg-foreground px-5 py-3.5 text-[11px] font-medium uppercase tracking-[0.22em] text-background transition-colors hover:bg-background hover:text-foreground"

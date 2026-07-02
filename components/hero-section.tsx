@@ -11,11 +11,9 @@ const easing = [0.22, 1, 0.36, 1] as const
 export function HeroSection({
   cores,
   coresConsulta,
-  aPartirDe,
 }: {
   cores: { slug: string; nome: string; hex: string; preco: number | null }[]
   coresConsulta: { slug: string; nome: string; hex: string; preco: number | null }[]
-  aPartirDe: number
 }) {
   return (
     <section className="relative overflow-hidden border-b border-border bg-background pt-28 pb-0 lg:pt-36">
@@ -75,11 +73,7 @@ export function HeroSection({
             transition={{ duration: 0.8, ease: easing, delay: 0.4 }}
             className="lg:col-span-5"
           >
-            <PreConfiguradorCard
-              cores={cores}
-              coresConsulta={coresConsulta}
-              aPartirDe={aPartirDe}
-            />
+            <PreConfiguradorCard cores={cores} coresConsulta={coresConsulta} />
           </motion.div>
         </div>
 

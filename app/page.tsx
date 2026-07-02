@@ -17,15 +17,11 @@ export default async function Page() {
   const coresConsulta = catalogo.modelos
     .filter((m) => !m.disponivel)
     .map((m) => ({ slug: m.slug, nome: m.nome, hex: m.hex, preco: m.precoBase }))
-  const precos = disponiveis
-    .map((m) => m.precoBase)
-    .filter((p): p is number => typeof p === "number")
-  const aPartirDe = precos.length ? Math.min(...precos) : 0
 
   return (
     <main className="min-h-screen bg-background text-foreground">
       <SiteNavbar />
-      <HeroSection cores={cores} coresConsulta={coresConsulta} aPartirDe={aPartirDe} />
+      <HeroSection cores={cores} coresConsulta={coresConsulta} />
       <PortasGrid />
       <ProcessSection />
       <SiteFooter />
