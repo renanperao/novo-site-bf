@@ -53,6 +53,8 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/" },
   robots: { index: true, follow: true },
+  // Search Console (propriedade "Prefixo do URL" https://brasilforte.com/).
+  verification: { google: "4FVs1H-RmaodXyx6tVQr7tQz6X5_LQ87dHyx9TSPZu8" },
   openGraph: {
     type: "website",
     url: "/",
