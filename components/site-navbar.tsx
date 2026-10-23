@@ -7,9 +7,9 @@ import { Button } from "@/components/ui/button"
 
 const navItems = [
   { label: "PORTAS", href: "/#portas" },
-  { label: "CONFIGURADOR", href: "/configurador" },
-  { label: "PROCESSO", href: "/#processo" },
-  { label: "CONTATO", href: "/#contato" },
+  { label: "OBRAS", href: "/#obras" },
+  { label: "COMO FUNCIONA", href: "/#processo" },
+  { label: "DÚVIDAS", href: "/#duvidas" },
 ]
 
 export function SiteNavbar() {
@@ -36,15 +36,17 @@ export function SiteNavbar() {
           />
         </Link>
 
-        <ul className="hidden items-center gap-10 md:flex">
+        <ul className="hidden items-center gap-8 md:flex">
           {navItems.map((item) => (
             <li key={item.href}>
-              <Link
+              {/* <a> e não <Link>: o Link do Next ignora o 2º clique na mesma âncora
+                  (URL igual = não rola). O navegador sempre rola até o #id. */}
+              <a
                 href={item.href}
                 className="text-[11px] font-medium uppercase tracking-[0.22em] text-muted-foreground transition-colors hover:text-foreground"
               >
                 {item.label}
-              </Link>
+              </a>
             </li>
           ))}
         </ul>
@@ -52,7 +54,7 @@ export function SiteNavbar() {
         <Button
           asChild
           size="sm"
-          className="h-8 rounded-none bg-foreground px-4 text-[11px] font-medium uppercase tracking-[0.22em] text-background hover:bg-foreground/90"
+          className="h-10 rounded-none bg-foreground px-4 text-[12px] font-medium uppercase tracking-[0.16em] text-background hover:bg-foreground/90"
         >
           <Link href="/configurador">Orçamento</Link>
         </Button>

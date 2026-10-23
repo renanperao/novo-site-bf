@@ -4,9 +4,10 @@ import { ConfiguradorApp } from "@/components/configurador/configurador-app"
 import { carregarCatalogo } from "@/lib/catalogo.server"
 
 export const metadata: Metadata = {
-  title: "Configurador · Brasil Forte Portas",
+  title: "Orçamento de Kit Porta Pronta Online",
   description:
-    "Monte sua porta passo a passo. Pré-orçamento online com finalização via WhatsApp.",
+    "Monte seu kit porta pronta passo a passo e veja o preço na hora: cor, medida, fechadura e instalação. Envie o orçamento pelo WhatsApp.",
+  alternates: { canonical: "/configurador/" },
 }
 
 export default async function ConfiguradorPage() {

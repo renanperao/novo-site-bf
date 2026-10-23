@@ -2,10 +2,18 @@
 
 import Link from "next/link"
 import { useState } from "react"
-import { ArrowUpRight, Check } from "lucide-react"
+import { ArrowRight, ArrowUpRight, Check } from "lucide-react"
 import { formatBRL, type TipoPorta } from "@/lib/catalogo"
 
-type Cor = { slug: string; nome: string; hex: string; preco: number | null }
+// Cores principais trazem a foto da porta (giro e correr) e o preço "a partir de" de cada tipo.
+export type CorPrincipal = {
+  slug: string
+  nome: string
+  foto: string | null
+  fotoCorrer: string | null
+  preco: number
+  precoCorrer: number
+}
 
 const TIPOS: { id: TipoPorta; nome: string }[] = [
   { id: "giro", nome: "Giro" },
@@ -13,83 +21,82 @@ const TIPOS: { id: TipoPorta; nome: string }[] = [
 ]
 
 /**
- * Mini "pré-configurador" no hero. Deixa o cliente escolher tipo + cor e leva
- * direto pro /configurador já com as escolhas pré-selecionadas (via query).
+ * Mini "pré-configurador" no hero: tipo + uma das cores principais, e leva pro
+ * /configurador já com as escolhas (via query). Começa no mais vendido marcado,
+ * então o preço aparece de cara. As demais cores ficam no configurador.
  */
 export function PreConfiguradorCard({
   cores,
-  coresConsulta,
+  maisCores,
+  inicial,
 }: {
-  cores: Cor[]
-  coresConsulta: Cor[]
+  cores: CorPrincipal[]
+  maisCores: number
+  inicial: string
 }) {
   const [tipo, setTipo] = useState<TipoPorta>("giro")
-  // Sem cor pré-selecionada e SEM preço logo de cara: o preço só aparece depois
-  // que o cliente escolhe uma cor (aí mostra o preço dela, ou "sob consulta").
-  const [corSlug, setCorSlug] = useState<string>("")
-
-  const href = `/configurador?tipo=${tipo}${corSlug ? `&cor=${corSlug}` : ""}`
-  const corSel = [...cores, ...coresConsulta].find((c) => c.slug === corSlug)
-  const corNome = corSel?.nome
+  const [corSlug, setCorSlug] = useState(inicial)
+  const cor = cores.find((c) => c.slug === corSlug) ?? cores[0]
+  const precoDe = (c: CorPrincipal) => (tipo === "correr" ? c.precoCorrer : c.preco)
 
   return (
-    <div className="border border-border bg-background p-6 lg:p-7">
-      <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-        Configurador online
-      </p>
-      <p className="mt-2 text-xl font-medium uppercase tracking-[-0.01em]">
-        Monte sua porta
-      </p>
-      <p className="mt-1 text-sm text-muted-foreground">
-        Escolha, veja o pré-orçamento na hora e finalize no WhatsApp.
-      </p>
+    <div className="flex h-full flex-col border border-border bg-background p-5 lg:p-7">
+      <p className="text-xl font-medium uppercase tracking-[-0.01em]">Monte sua porta</p>
 
-      {/* Tipo */}
-      <p className="mb-2 mt-6 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-        Tipo de porta
-      </p>
-      <div className="flex gap-2">
+      <div className="mt-4 flex gap-2" role="radiogroup" aria-label="Tipo de porta">
         {TIPOS.map((t) => (
           <button
             key={t.id}
             type="button"
+            role="radio"
+            aria-checked={tipo === t.id}
             onClick={() => setTipo(t.id)}
-            className={`flex-1 border px-3 py-2 text-[11px] font-medium uppercase tracking-[0.14em] transition-colors ${
+            className={`flex-1 border px-3 py-2.5 text-[12px] font-medium uppercase tracking-[0.14em] transition-colors ${
               tipo === t.id
                 ? "border-foreground bg-foreground text-background"
                 : "border-border hover:border-foreground/40"
             }`}
           >
-            {t.nome}
+            Porta de {t.nome}
           </button>
         ))}
       </div>
 
-      {/* Cor */}
-      <p className="mb-2 mt-4 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-        <span>Cor</span>
-        {corNome && <span className="text-foreground">{corNome}</span>}
-      </p>
-      <div className="flex gap-2">
+      {/* Cores principais: foto real da porta + nome + preço */}
+      <div className="mt-3 grid grid-cols-3 gap-2" role="radiogroup" aria-label="Cor">
         {cores.map((c) => {
-          const sel = corSlug === c.slug
+          const sel = cor?.slug === c.slug
+          const foto = (tipo === "correr" && c.fotoCorrer) || c.foto
           return (
             <button
               key={c.slug}
               type="button"
+              role="radio"
+              aria-checked={sel}
               onClick={() => setCorSlug(c.slug)}
-              title={c.nome}
-              aria-label={c.nome}
-              className={`relative aspect-square flex-1 border transition-all ${
-                sel
-                  ? "border-foreground ring-1 ring-foreground"
-                  : "border-border hover:border-foreground/40"
+              className={`relative flex flex-col border text-left transition-all ${
+                sel ? "border-foreground ring-1 ring-foreground" : "border-border hover:border-foreground/40"
               }`}
-              style={{ background: c.hex }}
             >
+              <span className="relative block aspect-[3/4] bg-[#E9E8E4]">
+                {foto && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={foto}
+                    alt={`Porta ${c.nome}`}
+                    className="absolute inset-0 h-full w-full object-contain p-2 mix-blend-multiply"
+                  />
+                )}
+              </span>
+              <span className="flex flex-col gap-0.5 p-2">
+                <span className="text-[12px] font-medium leading-tight">{c.nome}</span>
+                <span className="text-[11px] tabular-nums text-muted-foreground">
+                  {formatBRL(precoDe(c))}
+                </span>
+              </span>
               {sel && (
-                <span className="absolute right-1 top-1 inline-flex h-4 w-4 items-center justify-center bg-foreground text-background">
-                  <Check className="size-2.5" />
+                <span className="absolute right-1.5 top-1.5 inline-flex h-5 w-5 items-center justify-center bg-foreground text-background">
+                  <Check className="size-3" />
                 </span>
               )}
             </button>
@@ -97,57 +104,31 @@ export function PreConfiguradorCard({
         })}
       </div>
 
-      {/* Demais cores (sob consulta) — uma fileira preenchendo toda a largura */}
-      {coresConsulta.length > 0 && (
-        <div className="mt-2 grid grid-cols-10 gap-1.5">
-          {coresConsulta.map((c) => {
-            const sel = corSlug === c.slug
-            return (
-              <button
-                key={c.slug}
-                type="button"
-                onClick={() => setCorSlug(c.slug)}
-                title={c.nome}
-                aria-label={c.nome}
-                className={`aspect-square border transition-all ${
-                  sel
-                    ? "border-foreground ring-1 ring-foreground"
-                    : "border-border hover:border-foreground/40"
-                }`}
-                style={{ background: c.hex }}
-              />
-            )
-          })}
-        </div>
+      {maisCores > 0 && (
+        <Link
+          href={`/configurador?tipo=${tipo}`}
+          className="mt-3 inline-flex items-center gap-1.5 self-start text-[13px] underline underline-offset-4 hover:text-muted-foreground"
+        >
+          Ver mais {maisCores} cores e madeiras
+          <ArrowRight className="size-3.5" />
+        </Link>
       )}
 
-      {/* Preço + CTA — o preço só aparece depois que uma cor é escolhida */}
-      <div className="mt-6 border-t border-border pt-5">
-        {corSel ? (
-          <div className="flex items-baseline justify-between">
-            <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-muted-foreground">
-              {corSel.preco === null ? "Preço" : "A partir de"}
-            </span>
-            {corSel.preco === null ? (
-              <span className="text-sm font-medium uppercase tracking-[-0.01em]">
-                Sob consulta
-              </span>
-            ) : (
-              <span className="text-lg tabular-nums">{formatBRL(corSel.preco)}</span>
-            )}
-          </div>
-        ) : (
-          <p className="text-xs text-muted-foreground">
-            Escolha uma cor para ver o preço.
-          </p>
-        )}
+      <div className="mt-auto pt-5">
+        <div className="flex items-baseline justify-between gap-3 border-t border-border pt-4">
+          <span className="text-sm text-muted-foreground">a partir de</span>
+          {cor && <span className="text-2xl font-medium tabular-nums">{formatBRL(precoDe(cor))}</span>}
+        </div>
         <Link
-          href={href}
-          className="group mt-4 inline-flex w-full items-center justify-center gap-2 border border-foreground bg-foreground px-5 py-3.5 text-[11px] font-medium uppercase tracking-[0.22em] text-background transition-colors hover:bg-background hover:text-foreground"
+          href={`/configurador?tipo=${tipo}&cor=${cor?.slug ?? ""}`}
+          className="group mt-3 inline-flex w-full items-center justify-center gap-2 border border-foreground bg-foreground px-5 py-4 text-[12px] font-medium uppercase tracking-[0.18em] text-background transition-colors hover:bg-background hover:text-foreground"
         >
           Montar minha porta
           <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </Link>
+        <p className="mt-2.5 text-center text-xs text-muted-foreground">
+          Kit completo com batente, vistas e fechadura
+        </p>
       </div>
     </div>
   )

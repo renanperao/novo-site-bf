@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react"
 import { motion, AnimatePresence, useAnimationControls } from "framer-motion"
 import { ArrowLeft, ArrowRight, ArrowUpRight, Plus } from "lucide-react"
-import { calcularPreco, calcularTotalOrcamento, formatBRL } from "@/lib/catalogo"
+import { calcularPreco, calcularTotalOrcamento, formatBRL, precoLabel } from "@/lib/catalogo"
 import type { Catalogo, ConfiguracaoAtual } from "@/lib/catalogo"
 
 const easing = [0.22, 1, 0.36, 1] as const
@@ -16,7 +16,6 @@ const easing = [0.22, 1, 0.36, 1] as const
 export function ConfiguradorMobileBar({
   catalogo,
   config,
-  consulta,
   itensConfigs,
   configCompleta,
   ultimo,
@@ -28,7 +27,6 @@ export function ConfiguradorMobileBar({
 }: {
   catalogo: Catalogo
   config: ConfiguracaoAtual
-  consulta: boolean
   itensConfigs: ConfiguracaoAtual[]
   configCompleta: boolean
   ultimo: boolean
@@ -39,7 +37,10 @@ export function ConfiguradorMobileBar({
   waUrl: string
 }) {
   const calcAtual = calcularPreco(catalogo, config)
-  const { total, qtdPortas, temConsulta } = calcularTotalOrcamento(catalogo, itensConfigs)
+  const { total, qtdPortas, temConsulta, estimado } = calcularTotalOrcamento(
+    catalogo,
+    itensConfigs
+  )
   const temItens = itensConfigs.length > 0
 
   // Pulsa o botão Finalizar sempre que uma porta é adicionada.
@@ -68,10 +69,10 @@ export function ConfiguradorMobileBar({
             className="overflow-hidden border-b border-border"
           >
             <div className="flex items-center justify-between gap-3 px-4 py-2 sm:px-6">
-              <span className="min-w-0 truncate font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+              <span className="min-w-0 truncate text-xs text-muted-foreground">
                 {qtdPortas} {qtdPortas === 1 ? "porta" : "portas"} ·{" "}
                 <span className="tabular-nums text-foreground">
-                  {total > 0 ? formatBRL(total) : "—"}
+                  {total > 0 ? `${estimado ? "a partir de " : ""}${formatBRL(total)}` : "—"}
                 </span>
                 {temConsulta ? " + consulta" : ""}
               </span>
@@ -80,7 +81,7 @@ export function ConfiguradorMobileBar({
                 href={waUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex shrink-0 items-center gap-1.5 border border-foreground bg-foreground px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.18em] text-background"
+                className="inline-flex shrink-0 items-center gap-1.5 border border-foreground bg-foreground px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.18em] text-background"
               >
                 Finalizar
                 <ArrowUpRight className="size-3" />
@@ -92,15 +93,11 @@ export function ConfiguradorMobileBar({
 
       <div className="flex items-center gap-3 px-4 py-3 sm:px-6">
         <div className="min-w-0 flex-1">
-          <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-muted-foreground">
-            Esta porta
+          <p className="truncate text-xs text-muted-foreground">
+            Esta porta{calcAtual.estimado ? " · a partir de" : ""}
           </p>
-          <p className="truncate text-sm font-medium uppercase tracking-[-0.01em]">
-            {consulta
-              ? "Sob consulta"
-              : calcAtual.total > 0
-              ? formatBRL(calcAtual.total)
-              : "—"}
+          <p className="truncate text-base font-medium tabular-nums">
+            {calcAtual.estimado ? formatBRL(calcAtual.total) : precoLabel(calcAtual)}
           </p>
         </div>
 
@@ -120,7 +117,7 @@ export function ConfiguradorMobileBar({
             type="button"
             onClick={onAdicionar}
             disabled={!configCompleta}
-            className="inline-flex shrink-0 items-center gap-2 border border-foreground bg-foreground px-4 py-2.5 text-[10px] font-medium uppercase tracking-[0.22em] text-background transition-colors disabled:cursor-not-allowed disabled:border-border disabled:bg-transparent disabled:text-muted-foreground sm:text-[11px]"
+            className="inline-flex shrink-0 items-center gap-2 border border-foreground bg-foreground px-4 py-2.5 text-[11px] font-medium uppercase tracking-[0.22em] text-background transition-colors disabled:cursor-not-allowed disabled:border-border disabled:bg-transparent disabled:text-muted-foreground sm:text-[11px]"
           >
             <Plus className="size-3.5" />
             Adicionar
@@ -129,7 +126,7 @@ export function ConfiguradorMobileBar({
           <button
             type="button"
             onClick={onContinuar}
-            className="inline-flex shrink-0 items-center gap-2 border border-foreground bg-foreground px-4 py-2.5 text-[10px] font-medium uppercase tracking-[0.22em] text-background transition-colors sm:text-[11px]"
+            className="inline-flex shrink-0 items-center gap-2 border border-foreground bg-foreground px-4 py-2.5 text-[11px] font-medium uppercase tracking-[0.22em] text-background transition-colors sm:text-[11px]"
           >
             Continuar
             <ArrowRight className="size-3.5" />

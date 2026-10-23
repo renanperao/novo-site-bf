@@ -1,63 +1,21 @@
 "use client"
 
-import { forwardRef, useId } from "react"
-import { Check, X } from "lucide-react"
-import { formatBRL, FECHADURA_FUNCOES, SEM_FECHADURA } from "@/lib/catalogo"
-import type {
-  Catalogo,
-  ConfiguracaoAtual,
-  Fechadura,
-  Modelo,
-  TipoPorta,
+import { Check, Ruler, X } from "lucide-react"
+import {
+  A_MEDIR,
+  correrDaConfig,
+  extrasDaConfig,
+  fechaduraDaConfig,
+  fechadurasDoTipo,
+  formatBRL,
+  FECHADURA_FUNCOES,
+  medidaLabel,
+  SEM_FECHADURA,
+  TAXA_MEDICAO,
+  temMedida,
+  tipoLabel,
 } from "@/lib/catalogo"
-
-/* ────────────────────────────────────────────────────────────────────
-   Wrapper de Section: cabeçalho com número + título + ✓ quando concluído
-   ──────────────────────────────────────────────────────────────────── */
-
-export const Section = forwardRef<
-  HTMLElement,
-  {
-    numero: number
-    titulo: string
-    descricao?: string
-    concluido: boolean
-    bloqueado: boolean
-    children: React.ReactNode
-  }
->(function Section({ numero, titulo, descricao, concluido, bloqueado, children }, ref) {
-  return (
-    <section
-      ref={ref}
-      className={`scroll-mt-20 border-b border-border py-8 transition-opacity sm:py-10 ${
-        bloqueado ? "opacity-30 pointer-events-none select-none" : ""
-      }`}
-    >
-      <header className="mb-6 flex items-baseline gap-3 sm:mb-7 sm:gap-4">
-        <span
-          className={`inline-flex h-6 w-6 shrink-0 items-center justify-center border sm:h-7 sm:w-7 ${
-            concluido
-              ? "bg-foreground text-background border-foreground"
-              : "border-border text-foreground"
-          }`}
-        >
-          {concluido ? <Check className="size-3" /> : (
-            <span className="font-mono text-[10px] sm:text-[11px]">{numero}</span>
-          )}
-        </span>
-        <div>
-          <h2 className="text-lg font-medium uppercase tracking-[-0.01em] sm:text-2xl">{titulo}</h2>
-          {descricao && (
-            <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.22em] text-muted-foreground sm:text-[10px]">
-              {descricao}
-            </p>
-          )}
-        </div>
-      </header>
-      <div>{children}</div>
-    </section>
-  )
-})
+import type { Catalogo, ConfiguracaoAtual, Modelo, TipoPorta } from "@/lib/catalogo"
 
 /* ────────────────────────────────────────────────────────────────────
    STEP 1 · Tipo
@@ -116,19 +74,19 @@ export function StepModelo({
   return (
     <div className="space-y-5">
       <div>
-        <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+        <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
           — Cores principais
         </p>
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-1 gap-2 lg:grid-cols-3">
           {disponiveis.map((m) => (
-            <ModeloCard key={m.slug} modelo={m} selecionado={valor === m.slug} onClick={() => onChange(m.slug)} />
+            <ModeloLinha key={m.slug} modelo={m} selecionado={valor === m.slug} onClick={() => onChange(m.slug)} />
           ))}
         </div>
       </div>
 
       {consulta.length > 0 && (
         <div>
-          <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+          <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
             — Sob consulta · Outras cores
           </p>
           <div className="grid grid-cols-4 gap-2 sm:grid-cols-5 lg:grid-cols-5">
@@ -145,6 +103,58 @@ export function StepModelo({
       )}
       {erro && <MensagemErro>Selecione uma cor.</MensagemErro>}
     </div>
+  )
+}
+
+/** Cor principal: swatch + nome + preço + prazo + benefício principal. */
+function ModeloLinha({
+  modelo,
+  selecionado,
+  onClick,
+}: {
+  modelo: Modelo
+  selecionado: boolean
+  onClick: () => void
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={selecionado}
+      className={`relative flex items-stretch gap-3 border bg-background p-2 text-left transition-all ${
+        selecionado
+          ? "border-foreground ring-1 ring-foreground"
+          : "border-border hover:border-foreground/40"
+      }`}
+    >
+      <span
+        className="w-12 shrink-0 border border-border"
+        style={{ background: modelo.hex }}
+        aria-hidden
+      />
+      <span className="flex min-w-0 flex-1 flex-col gap-0.5 py-0.5 pr-6">
+        <span className="flex flex-wrap items-baseline gap-x-2">
+          <span className="text-sm font-medium uppercase tracking-[-0.01em]">{modelo.nome}</span>
+          {modelo.destaque && (
+            <span className="bg-foreground px-1.5 py-0.5 font-mono text-[11px] uppercase tracking-[0.14em] text-background">
+              {modelo.destaque}
+            </span>
+          )}
+        </span>
+        <span className="text-xs text-muted-foreground">
+          {modelo.beneficios[0] ?? modelo.material}
+        </span>
+        <span className="mt-0.5 flex flex-wrap gap-x-3 text-xs">
+          <span className="tabular-nums">a partir de {formatBRL(modelo.precoBase ?? 0)}</span>
+          {modelo.prazo && <span className="text-muted-foreground">{modelo.prazo}</span>}
+        </span>
+      </span>
+      {selecionado && (
+        <span className="absolute right-2 top-2 inline-flex h-5 w-5 items-center justify-center bg-foreground text-background">
+          <Check className="size-3" />
+        </span>
+      )}
+    </button>
   )
 }
 
@@ -177,11 +187,11 @@ function ModeloCard({
           {modelo.nome}
         </p>
         {modelo.disponivel ? (
-          <p className="font-mono text-[9px] tabular-nums text-muted-foreground">
+          <p className="font-mono text-[11px] tabular-nums text-muted-foreground">
             {formatBRL(modelo.precoBase ?? 0)}
           </p>
         ) : (
-          <p className="font-mono text-[8px] uppercase tracking-[0.18em] text-muted-foreground">
+          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
             Consulte
           </p>
         )}
@@ -209,9 +219,9 @@ export function StepDimensao({
   erroBatente,
 }: {
   modelo: Modelo
-  largura: number | null
+  largura: ConfiguracaoAtual["largura"]
   batente: string | null
-  onLarguraChange: (l: number) => void
+  onLarguraChange: (l: ConfiguracaoAtual["largura"]) => void
   onBatenteChange: (b: string) => void
   erroLargura?: boolean
   erroBatente?: boolean
@@ -219,8 +229,8 @@ export function StepDimensao({
   if (!modelo.disponivel) {
     return (
       <div className="border border-dashed border-border p-8 text-center">
-        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-          Modelo importado · Sob consulta
+        <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
+          Sob consulta
         </p>
         <p className="mt-4 text-sm text-muted-foreground">
           Pulamos esta etapa: largura, batente e prazo serão confirmados com a equipe via
@@ -231,10 +241,13 @@ export function StepDimensao({
   }
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-8">
       <div>
-        <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+        <p className="mb-1 font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
           — Largura da porta
+        </p>
+        <p className="mb-3 text-xs text-muted-foreground">
+          Mais comuns: banheiro 60–70 cm · quarto 70–80 cm · entradas amplas 90–100 cm.
         </p>
         <div className="flex flex-wrap gap-2">
           {modelo.larguras.map((l) => (
@@ -243,16 +256,19 @@ export function StepDimensao({
             </Chip>
           ))}
         </div>
+        <BotaoNaoSei selecionado={largura === A_MEDIR} onClick={() => onLarguraChange(A_MEDIR)}>
+          Não sei a largura
+        </BotaoNaoSei>
         {erroLargura && <MensagemErro>Selecione a largura da porta.</MensagemErro>}
       </div>
 
       {modelo.batentes.length > 0 && (
         <div>
-          <p className="mb-1 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+          <p className="mb-1 font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
             — Faixa do batente (espessura da parede)
           </p>
           <p className="mb-3 text-xs text-muted-foreground">
-            Meça a espessura total da parede onde a porta será instalada (em centímetros).
+            Meça a espessura total da parede, já com reboco e revestimento (em centímetros).
           </p>
           <div className="flex flex-wrap gap-2">
             {modelo.batentes.map((b) => (
@@ -261,10 +277,53 @@ export function StepDimensao({
               </Chip>
             ))}
           </div>
+          <BotaoNaoSei selecionado={batente === A_MEDIR} onClick={() => onBatenteChange(A_MEDIR)}>
+            Não sei a espessura da parede
+          </BotaoNaoSei>
           {erroBatente && <MensagemErro>Selecione a faixa do batente.</MensagemErro>}
         </div>
       )}
+
+      {(largura === A_MEDIR || batente === A_MEDIR) && (
+        <div className="flex gap-3 border border-foreground/20 bg-muted/40 p-4">
+          <Ruler className="mt-0.5 size-4 shrink-0" aria-hidden />
+          <p className="text-sm leading-relaxed">
+            <span className="font-medium">Sem problema: nossa equipe mede pra você.</span>{" "}
+            <span className="text-muted-foreground">
+              A visita técnica custa {formatBRL(TAXA_MEDICAO)} (até 50 km de Biguaçu) e o valor
+              é 100% abatido no pedido. Até lá, mostramos o preço &ldquo;a partir de&rdquo;.
+            </span>
+          </p>
+        </div>
+      )}
     </div>
+  )
+}
+
+/** "Não sei": a maioria não sabe a medida, então fica numa linha própria e em destaque. */
+function BotaoNaoSei({
+  selecionado,
+  onClick,
+  children,
+}: {
+  selecionado: boolean
+  onClick: () => void
+  children: React.ReactNode
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={selecionado}
+      className={`mt-3 inline-flex items-center gap-2 border px-4 py-2.5 text-sm font-medium transition-colors ${
+        selecionado
+          ? "border-red-600 bg-red-600 text-white"
+          : "border-red-600 text-red-600 hover:bg-red-50"
+      }`}
+    >
+      <Ruler className="size-4" aria-hidden />
+      {children}
+    </button>
   )
 }
 
@@ -281,12 +340,45 @@ export function StepAcessorios({
   config: ConfiguracaoAtual
   onConfig: (patch: Partial<ConfiguracaoAtual>) => void
 }) {
-  const prendeId = useId()
+  const modelo = catalogo.modelos.find((m) => m.slug === config.modeloSlug)
+  const correrAtual = modelo ? correrDaConfig(modelo, config) : null
+  const fechaduraAtual = fechaduraDaConfig(catalogo, config)
+  const alternarExtra = (id: string) =>
+    onConfig({
+      extras: config.extras.includes(id)
+        ? config.extras.filter((e) => e !== id)
+        : [...config.extras, id],
+    })
   return (
     <div className="space-y-6">
+      {/* Porta de correr com mais de um modo (ex.: UV sobrepor/embutir) */}
+      {modelo && correrAtual && modelo.correr.length > 1 && (
+        <div>
+          <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
+            — Trilho da porta de correr
+          </p>
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+            {modelo.correr.map((c) => (
+              <FotoCard
+                key={c.id}
+                nome={c.nome}
+                foto={c.foto}
+                precoLabel={`+ ${formatBRL(c.adicional)}`}
+                selecionado={correrAtual.id === c.id}
+                onClick={() => onConfig({ correrId: c.id })}
+              />
+            ))}
+          </div>
+          <p className="mt-2 text-xs text-muted-foreground">
+            Sobrepor: a porta corre por fora da parede. Embutir: a porta corre por dentro da
+            parede (exige preparo na obra).
+          </p>
+        </div>
+      )}
+
       {/* Fechadura — inclusa; escolhe função + acabamento */}
       <div>
-        <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+        <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
           — Fechadura (inclusa)
         </p>
 
@@ -303,11 +395,13 @@ export function StepAcessorios({
         </div>
 
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-          {catalogo.fechaduras.map((f) => (
-            <FechaduraCard
+          {fechadurasDoTipo(catalogo, config.tipo).map((f) => (
+            <FotoCard
               key={f.id}
-              fechadura={f}
-              selecionado={config.fechaduraId === f.id}
+              nome={f.nome}
+              foto={f.foto}
+              precoLabel={labelAdicional(f.adicional)}
+              selecionado={fechaduraAtual?.id === f.id}
               onClick={() => onConfig({ fechaduraId: f.id })}
             />
           ))}
@@ -325,56 +419,58 @@ export function StepAcessorios({
           <span className="flex items-center gap-2 text-sm font-medium uppercase tracking-[-0.01em]">
             <X className="size-4" /> Sem fechadura
           </span>
-          <span className="font-mono text-[10px] uppercase tracking-[0.18em] tabular-nums text-muted-foreground">
+          <span className="font-mono text-[11px] uppercase tracking-[0.18em] tabular-nums text-muted-foreground">
             − {formatBRL(catalogo.descontoSemFechadura)}
           </span>
         </button>
       </div>
 
-      {/* Prende-porta */}
-      {catalogo.prendePorta && (
-        <div className="flex items-start gap-3">
-          <input
-            type="checkbox"
-            id={prendeId}
-            checked={config.incluirPrendePorta}
-            onChange={(e) => onConfig({ incluirPrendePorta: e.target.checked })}
-            className="mt-1 size-4 accent-foreground"
-          />
-          <label htmlFor={prendeId} className="cursor-pointer text-sm">
-            <span className="font-medium">Adicionar prende-porta magnético slim</span>
-            <span className="ml-2 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-              + {formatBRL(catalogo.prendePorta.preco)} · já instalado
-            </span>
-            <span className="mt-1 block text-xs text-muted-foreground">
-              Evita que a porta bata na parede ao abrir.
-            </span>
-          </label>
+      {/* Extras — opcionais, somam por porta */}
+      {catalogo.extras.length > 0 && (
+        <div>
+          <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
+            — Extras (opcional)
+          </p>
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+            {catalogo.extras.map((e) => (
+              <FotoCard
+                key={e.id}
+                nome={e.nome}
+                foto={e.foto}
+                precoLabel={`+ ${formatBRL(e.preco)}`}
+                selecionado={config.extras.includes(e.id)}
+                onClick={() => alternarExtra(e.id)}
+              />
+            ))}
+          </div>
         </div>
       )}
     </div>
   )
 }
 
-function FechaduraCard({
-  fechadura,
+function labelAdicional(a: number) {
+  return a > 0 ? `+ ${formatBRL(a)}` : a < 0 ? `− ${formatBRL(Math.abs(a))}` : "Inclusa"
+}
+
+function FotoCard({
+  nome,
+  foto,
+  precoLabel,
   selecionado,
   onClick,
 }: {
-  fechadura: Fechadura
+  nome: string
+  foto: string | null
+  precoLabel: string
   selecionado: boolean
   onClick: () => void
 }) {
-  const precoLabel =
-    fechadura.adicional > 0
-      ? `+ ${formatBRL(fechadura.adicional)}`
-      : fechadura.adicional < 0
-      ? `− ${formatBRL(Math.abs(fechadura.adicional))}`
-      : "Inclusa"
   return (
     <button
       type="button"
       onClick={onClick}
+      aria-pressed={selecionado}
       className={`group relative flex flex-col border bg-background text-left transition-colors ${
         selecionado
           ? "border-foreground ring-1 ring-foreground"
@@ -382,19 +478,14 @@ function FechaduraCard({
       }`}
     >
       <div className="flex h-28 w-full items-center justify-center border-b border-border bg-muted/30 p-2 sm:h-32">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={fechadura.foto ?? ""}
-          alt={fechadura.nome}
-          className="max-h-full w-auto object-contain"
-          loading="lazy"
-        />
+        {foto && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={foto} alt={nome} className="max-h-full w-auto object-contain" loading="lazy" />
+        )}
       </div>
       <div className="flex flex-1 flex-col gap-1 p-2">
-        <p className="text-[11px] font-medium uppercase leading-tight tracking-[-0.01em]">
-          {fechadura.nome}
-        </p>
-        <p className="mt-auto pt-1 font-mono text-[10px] uppercase tracking-[0.18em] tabular-nums text-muted-foreground">
+        <p className="text-[11px] font-medium uppercase leading-tight tracking-[-0.01em]">{nome}</p>
+        <p className="mt-auto pt-1 font-mono text-[11px] uppercase tracking-[0.18em] tabular-nums text-muted-foreground">
           {precoLabel}
         </p>
       </div>
@@ -429,18 +520,18 @@ export function StepInstalacao({
   return (
     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
       <OptionCard selecionado={incluir} onClick={() => onChange(true)}>
-        <p className="text-sm font-medium uppercase tracking-[-0.01em]">Sim, instalar</p>
+        <p className="text-sm font-medium uppercase tracking-[-0.01em]">Com instalação</p>
         <p className="mt-2 text-xs text-muted-foreground">
           Equipe Brasil Forte cuida da medição, ajuste e fixação.
         </p>
-        <p className="mt-3 font-mono text-[10px] tabular-nums">
+        <p className="mt-3 font-mono text-[11px] tabular-nums">
           + {formatBRL(inst.preco)}
         </p>
       </OptionCard>
       <OptionCard selecionado={!incluir} onClick={() => onChange(false)}>
-        <p className="text-sm font-medium uppercase tracking-[-0.01em]">Só a porta</p>
+        <p className="text-sm font-medium uppercase tracking-[-0.01em]">Sem instalação</p>
         <p className="mt-2 text-xs text-muted-foreground">
-          Vou instalar por conta própria ou com outro profissional.
+          Só a porta: vou instalar por conta própria ou com outro profissional.
         </p>
       </OptionCard>
     </div>
@@ -484,7 +575,7 @@ export function StepQuantidade({
       >
         +
       </button>
-      <span className="ml-3 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+      <span className="ml-3 font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
         {valor === 1 ? "porta" : "portas"}
       </span>
     </div>
@@ -551,7 +642,7 @@ export function Chip({
 /** Aviso vermelho mostrado embaixo de um campo obrigatório não preenchido. */
 function MensagemErro({ children }: { children: React.ReactNode }) {
   return (
-    <p className="mt-3 flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-red-600">
+    <p className="mt-3 flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-red-600">
       <span aria-hidden>▲</span>
       {children}
     </p>
@@ -570,7 +661,7 @@ export function ResumoPortaAtual({
   config: ConfiguracaoAtual
 }) {
   const modelo = catalogo.modelos.find((m) => m.slug === config.modeloSlug)
-  const fechadura = catalogo.fechaduras.find((f) => f.id === config.fechaduraId)
+  const fechadura = fechaduraDaConfig(catalogo, config)
   const instalacao = config.tipo ? catalogo.instalacoes[config.tipo] : null
 
   const funcaoNome =
@@ -587,29 +678,26 @@ export function ResumoPortaAtual({
   return (
     <div className="border border-border">
       <div className="border-b border-border px-4 py-2">
-        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+        <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
           Resumo desta porta
         </p>
       </div>
       <dl className="divide-y divide-border text-[13px]">
-        <LinhaResumo
-          label="Tipo"
-          value={
-            config.tipo === "giro"
-              ? "Porta de Giro"
-              : config.tipo === "correr"
-              ? "Porta de Correr"
-              : "—"
-          }
-        />
+        <LinhaResumo label="Tipo" value={tipoLabel(modelo, config)} />
         <LinhaResumo
           label="Cor"
           value={modelo ? `${modelo.nome} · ${modelo.material}` : "—"}
         />
-        <LinhaResumo label="Largura" value={config.largura ? `${config.largura} cm` : "—"} />
+        <LinhaResumo label="Largura" value={medidaLabel(config.largura)} />
         {modelo?.batentes.length ? (
-          <LinhaResumo label="Batente" value={config.batente ? `${config.batente} cm` : "—"} />
+          <LinhaResumo label="Batente" value={medidaLabel(config.batente)} />
         ) : null}
+        {temMedida(config) && (
+          <LinhaResumo
+            label="Medição"
+            value={`Visita técnica · ${formatBRL(TAXA_MEDICAO)} abatidos no pedido`}
+          />
+        )}
         <LinhaResumo label="Fechadura" value={fechaduraLabel} />
         <LinhaResumo
           label="Instalação"
@@ -619,12 +707,9 @@ export function ResumoPortaAtual({
               : "Não incluir"
           }
         />
-        {config.incluirPrendePorta && catalogo.prendePorta ? (
-          <LinhaResumo
-            label="Prende-porta"
-            value={`+ ${formatBRL(catalogo.prendePorta.preco)}`}
-          />
-        ) : null}
+        {extrasDaConfig(catalogo, config).map((e) => (
+          <LinhaResumo key={e.id} label="Extra" value={`${e.nome} · + ${formatBRL(e.preco)}`} />
+        ))}
       </dl>
     </div>
   )
@@ -633,7 +718,7 @@ export function ResumoPortaAtual({
 function LinhaResumo({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-baseline justify-between gap-4 px-4 py-1.5">
-      <dt className="shrink-0 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+      <dt className="shrink-0 font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
         {label}
       </dt>
       <dd className="text-right">{value}</dd>

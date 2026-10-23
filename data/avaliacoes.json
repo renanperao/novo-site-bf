@@ -1,0 +1,31 @@
+{
+  "nota": 5,
+  "total": 48,
+  "url": null,
+  "depoimentos": [
+    {
+      "nome": "Sheila C.",
+      "texto": "Muito satisfeita com todo o processo de pré-venda, da montagem, do material usado e do pós-venda. Troquei 2 portas dos quartos que estavam infestadas de cupim. Minhas portas são lindas, deu outra aparência na minha casa."
+    },
+    {
+      "nome": "Marcelo B.",
+      "texto": "Comprei 5 portas, produto muito bom. Ficamos satisfeitos com a rapidez no atendimento, instalações e suporte. Super indicamos!"
+    },
+    {
+      "nome": "Camila S.",
+      "texto": "Portas de qualidade! Atendimento excelente, entrega e instalação das portas impecáveis! Recomendo."
+    },
+    {
+      "nome": "Sandra H.",
+      "texto": "Excelente atendimento! Entrega e montagem super rápida!"
+    },
+    {
+      "nome": "Rosita T.",
+      "texto": "Serviço de excelência, pontuais, comprometidos, educados. Super recomendo!"
+    },
+    {
+      "nome": "Antônia P.",
+      "texto": "Profissionais prestativos e comprometidos, cumprem o que prometem do início ao fim. Recomendo."
+    }
+  ]
+}

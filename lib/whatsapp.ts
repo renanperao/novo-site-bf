@@ -1,13 +1,23 @@
 import {
   calcularPreco,
+  extrasDaConfig,
+  fechaduraDaConfig,
+  tipoLabel,
   calcularTotalOrcamento,
   formatBRL,
+  medidaLabel,
   FECHADURA_FUNCOES,
   SEM_FECHADURA,
+  TAXA_MEDICAO,
 } from "./catalogo"
 import type { Catalogo, ConfiguracaoAtual } from "./catalogo"
 
 export const WA_NUMBER = "554832200195"
+
+/** Link do WhatsApp com mensagem pronta. */
+export function waLink(texto: string): string {
+  return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(texto)}`
+}
 
 function linhasItem(
   catalogo: Catalogo,
@@ -15,20 +25,13 @@ function linhasItem(
   indice: number
 ): string[] {
   const modelo = catalogo.modelos.find((m) => m.slug === config.modeloSlug)
-  const fechadura = catalogo.fechaduras.find((f) => f.id === config.fechaduraId)
+  const fechadura = fechaduraDaConfig(catalogo, config)
   const calc = calcularPreco(catalogo, config)
   const instalacao = config.tipo ? catalogo.instalacoes[config.tipo] : null
 
-  const tipoLabel =
-    config.tipo === "giro"
-      ? "Porta de Giro"
-      : config.tipo === "correr"
-      ? "Porta de Correr"
-      : "—"
-
   const linhas = [
     `*Porta ${indice}*`,
-    `• Tipo: ${tipoLabel}`,
+    `• Tipo: ${tipoLabel(modelo, config)}`,
     `• Modelo: ${modelo ? `${modelo.nome} (${modelo.material})` : "—"}`,
   ]
 
@@ -39,9 +42,9 @@ function linhasItem(
     return linhas
   }
 
-  linhas.push(`• Largura: ${config.largura ? `${config.largura} cm` : "—"}`)
+  linhas.push(`• Largura: ${medidaLabel(config.largura)}`)
   if (modelo?.batentes.length) {
-    linhas.push(`• Batente: ${config.batente ? `${config.batente} cm` : "—"}`)
+    linhas.push(`• Batente: ${medidaLabel(config.batente)}`)
   }
 
   const funcaoNome =
@@ -64,11 +67,11 @@ function linhasItem(
       config.incluirInstalacao && instalacao ? `Sim · ${instalacao.nome}` : "Não incluir"
     }`
   )
-  if (config.incluirPrendePorta && catalogo.prendePorta) {
-    linhas.push(`• Prende-porta magnético: Sim`)
+  for (const e of extrasDaConfig(catalogo, config)) {
+    linhas.push(`• Extra: ${e.nome} (+ ${formatBRL(e.preco)})`)
   }
   linhas.push(`• Quantidade: ${config.quantidade}`)
-  linhas.push(`• Subtotal: ${formatBRL(calc.total)}`)
+  linhas.push(`• Subtotal: ${calc.estimado ? "a partir de " : ""}${formatBRL(calc.total)}`)
   return linhas
 }
 
@@ -86,12 +89,17 @@ export function montaMensagemWhatsApp(
     linhas.push("")
   })
 
-  const { total, qtdPortas, temConsulta } = calcularTotalOrcamento(catalogo, itens)
+  const { total, qtdPortas, temConsulta, estimado } = calcularTotalOrcamento(catalogo, itens)
   if (total > 0) {
     linhas.push(
-      `*Total estimado: ${formatBRL(total)}* (${qtdPortas} ${
+      `*Total estimado: ${estimado ? "a partir de " : ""}${formatBRL(total)}* (${qtdPortas} ${
         qtdPortas === 1 ? "porta" : "portas"
       })`
+    )
+  }
+  if (estimado) {
+    linhas.push(
+      `_Não sei alguma medida — quero agendar a medição (${formatBRL(TAXA_MEDICAO)}, abatidos no pedido)._`
     )
   }
   if (temConsulta) {
@@ -108,6 +116,5 @@ export function whatsAppUrl(
   catalogo: Catalogo,
   itens: ConfiguracaoAtual[]
 ): string {
-  const mensagem = montaMensagemWhatsApp(catalogo, itens)
-  return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(mensagem)}`
+  return waLink(montaMensagemWhatsApp(catalogo, itens))
 }

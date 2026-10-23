@@ -7,6 +7,7 @@ import {
   calcularPreco,
   calcularTotalOrcamento,
   formatBRL,
+  precoLabel,
   resumoCurtoItem,
 } from "@/lib/catalogo"
 import type { Catalogo, ItemOrcamento } from "@/lib/catalogo"
@@ -30,7 +31,7 @@ export function ConfiguradorSummary({
   waUrl: string
   onRemover: (id: string) => void
 }) {
-  const { total, qtdPortas, temConsulta } = calcularTotalOrcamento(
+  const { total, qtdPortas, temConsulta, estimado } = calcularTotalOrcamento(
     catalogo,
     itens.map((i) => i.config)
   )
@@ -52,7 +53,7 @@ export function ConfiguradorSummary({
   return (
     <aside className="flex h-full flex-col border border-border bg-background">
       <div className="shrink-0 border-b border-border px-4 py-3">
-        <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground">
+        <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
           Seu orçamento
         </p>
         <p className="mt-1 text-base font-medium uppercase tracking-[-0.01em]">
@@ -83,16 +84,16 @@ export function ConfiguradorSummary({
                     className="overflow-hidden"
                   >
                     <div className="flex items-start gap-2 px-4 py-3">
-                      <span className="mt-0.5 font-mono text-[10px] tabular-nums text-muted-foreground">
+                      <span className="mt-0.5 font-mono text-[11px] tabular-nums text-muted-foreground">
                         {i + 1}
                       </span>
                       <div className="min-w-0 flex-1">
                         <p className="text-[13px] leading-tight">
                           {resumoCurtoItem(catalogo, it.config)}
                         </p>
-                        <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.18em] tabular-nums text-muted-foreground">
+                        <p className="mt-0.5 font-mono text-[11px] uppercase tracking-[0.18em] tabular-nums text-muted-foreground">
                           ×{it.config.quantidade} ·{" "}
-                          {calc.consultar ? "sob consulta" : formatBRL(calc.total)}
+                          {precoLabel(calc)}
                         </p>
                       </div>
                       <button
@@ -115,15 +116,15 @@ export function ConfiguradorSummary({
       {!vazio && (
         <div className="shrink-0 border-t border-border px-4 py-3">
           <div className="flex items-baseline justify-between gap-2">
-            <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
+            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
               Total
             </span>
             <span className="text-lg tabular-nums">
-              {total > 0 ? formatBRL(total) : "—"}
+              {total > 0 ? `${estimado ? "a partir de " : ""}${formatBRL(total)}` : "—"}
             </span>
           </div>
           {temConsulta && (
-            <p className="mt-0.5 text-right font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
+            <p className="mt-0.5 text-right font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
               + itens sob consulta
             </p>
           )}
@@ -147,11 +148,11 @@ export function ConfiguradorSummary({
           <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </motion.a>
         {vazio ? (
-          <p className="mt-2 text-center font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
+          <p className="mt-2 text-center font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
             Adicione ao menos uma porta
           </p>
         ) : (
-          <p className="mt-2 text-center font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
+          <p className="mt-2 text-center font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
             Pronto — pode finalizar ou adicionar mais portas
           </p>
         )}

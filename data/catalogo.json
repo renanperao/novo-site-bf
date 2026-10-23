@@ -1,5 +1,5 @@
 {
-  "geradoEm": "2026-06-20T15:02:24.070Z",
+  "geradoEm": "2026-10-23T01:14:12.909Z",
   "modelos": [
     {
       "slug": "branco-diamante-pet",
@@ -7,9 +7,24 @@
       "nomeCompleto": "Kit Porta Branco Diamante (PET)",
       "material": "Revestimento PET",
       "hex": "#FFFFFF",
+      "foto": "/images/fotos/branco-diamante-pet.webp",
+      "destaque": null,
+      "beneficios": [
+        "100% revestida em polímero PET super branco",
+        "Alta resistência a riscos e umidade",
+        "5 anos de garantia contra amarelecimento"
+      ],
+      "prazo": "Entrega em cerca de 20 dias",
       "disponivel": true,
       "precoBase": 1290,
-      "adicionalCorrer": 530,
+      "correr": [
+        {
+          "id": "sobrepor",
+          "nome": "Sobrepor",
+          "adicional": 530,
+          "foto": "/images/fotos/branco-diamante-pet-correr-sobrepor.webp"
+        }
+      ],
       "larguras": [
         60,
         70,
@@ -209,14 +224,226 @@
       ]
     },
     {
+      "slug": "branco-uv",
+      "nome": "Branco UV",
+      "nomeCompleto": "Kit Porta Branco UV",
+      "material": "MDF Ultra · Pintura UV",
+      "hex": "#F6F6F4",
+      "foto": "/images/fotos/branco-uv.webp",
+      "destaque": "Mais vendido",
+      "beneficios": [
+        "100% MDF Ultra: porta, batente e vistas",
+        "Kit imune a cupins",
+        "Altamente resistente à umidade"
+      ],
+      "prazo": "Pronta entrega",
+      "disponivel": true,
+      "precoBase": 1210,
+      "correr": [
+        {
+          "id": "sobrepor",
+          "nome": "Sobrepor",
+          "adicional": 790,
+          "foto": "/images/fotos/branco-uv-correr-sobrepor.webp"
+        },
+        {
+          "id": "embutir",
+          "nome": "Embutir",
+          "adicional": 1050,
+          "foto": "/images/fotos/branco-uv-correr-embutir.webp"
+        }
+      ],
+      "larguras": [
+        60,
+        70,
+        80,
+        90,
+        100
+      ],
+      "batentes": [
+        "10 a 15",
+        "13 a 18",
+        "16 a 21",
+        "19 a 24",
+        "22 a 27"
+      ],
+      "variacoes": [
+        {
+          "largura": 60,
+          "batente": "10 a 15",
+          "preco": 1210,
+          "id": "393777709"
+        },
+        {
+          "largura": 60,
+          "batente": "13 a 18",
+          "preco": 1260,
+          "id": "393777712"
+        },
+        {
+          "largura": 60,
+          "batente": "16 a 21",
+          "preco": 1320,
+          "id": "393777715"
+        },
+        {
+          "largura": 60,
+          "batente": "19 a 24",
+          "preco": 1380,
+          "id": "393777718"
+        },
+        {
+          "largura": 60,
+          "batente": "22 a 27",
+          "preco": 1430,
+          "id": "393777721"
+        },
+        {
+          "largura": 70,
+          "batente": "10 a 15",
+          "preco": 1220,
+          "id": "393786026"
+        },
+        {
+          "largura": 70,
+          "batente": "13 a 18",
+          "preco": 1280,
+          "id": "393786029"
+        },
+        {
+          "largura": 70,
+          "batente": "16 a 21",
+          "preco": 1330,
+          "id": "393786032"
+        },
+        {
+          "largura": 70,
+          "batente": "19 a 24",
+          "preco": 1390,
+          "id": "393786036"
+        },
+        {
+          "largura": 70,
+          "batente": "22 a 27",
+          "preco": 1440,
+          "id": "393786039"
+        },
+        {
+          "largura": 80,
+          "batente": "10 a 15",
+          "preco": 1230,
+          "id": "393786042"
+        },
+        {
+          "largura": 80,
+          "batente": "13 a 18",
+          "preco": 1290,
+          "id": "393786045"
+        },
+        {
+          "largura": 80,
+          "batente": "16 a 21",
+          "preco": 1340,
+          "id": "393786048"
+        },
+        {
+          "largura": 80,
+          "batente": "19 a 24",
+          "preco": 1400,
+          "id": "393786051"
+        },
+        {
+          "largura": 80,
+          "batente": "22 a 27",
+          "preco": 1450,
+          "id": "393786054"
+        },
+        {
+          "largura": 90,
+          "batente": "10 a 15",
+          "preco": 1280,
+          "id": "393786058"
+        },
+        {
+          "largura": 90,
+          "batente": "13 a 18",
+          "preco": 1330,
+          "id": "393786062"
+        },
+        {
+          "largura": 90,
+          "batente": "16 a 21",
+          "preco": 1390,
+          "id": "393786067"
+        },
+        {
+          "largura": 90,
+          "batente": "19 a 24",
+          "preco": 1440,
+          "id": "393786070"
+        },
+        {
+          "largura": 90,
+          "batente": "22 a 27",
+          "preco": 1500,
+          "id": "393786073"
+        },
+        {
+          "largura": 100,
+          "batente": "10 a 15",
+          "preco": 1620,
+          "id": "393786076"
+        },
+        {
+          "largura": 100,
+          "batente": "13 a 18",
+          "preco": 1670,
+          "id": "393786079"
+        },
+        {
+          "largura": 100,
+          "batente": "16 a 21",
+          "preco": 1730,
+          "id": "393786082"
+        },
+        {
+          "largura": 100,
+          "batente": "19 a 24",
+          "preco": 1780,
+          "id": "393786085"
+        },
+        {
+          "largura": 100,
+          "batente": "22 a 27",
+          "preco": 1840,
+          "id": "393786088"
+        }
+      ]
+    },
+    {
       "slug": "branco-gelo",
       "nome": "Branco Gelo",
       "nomeCompleto": "Kit Porta Branco Gelo",
       "material": "Acabamento branco gelo",
       "hex": "#ECEFF0",
+      "foto": "/images/fotos/branco-gelo.webp",
+      "destaque": null,
+      "beneficios": [
+        "Melhor custo-benefício da linha",
+        "Boa construção, com batentes mistos",
+        "Economia sem perder a beleza da obra"
+      ],
+      "prazo": "Entrega em cerca de 30 dias",
       "disponivel": true,
       "precoBase": 1085,
-      "adicionalCorrer": 530,
+      "correr": [
+        {
+          "id": "sobrepor",
+          "nome": "Sobrepor",
+          "adicional": 530,
+          "foto": "/images/catalogo/branco-gelo-correr-sobrepor.jpg"
+        }
+      ],
       "larguras": [
         60,
         70,
@@ -416,185 +643,55 @@
       ]
     },
     {
-      "slug": "branco-uv",
-      "nome": "Branco UV",
-      "nomeCompleto": "Kit Porta Branco UV",
-      "material": "Pintura UV",
-      "hex": "#F6F6F4",
-      "disponivel": true,
-      "precoBase": 1150,
-      "adicionalCorrer": 790,
-      "larguras": [
-        60,
-        70,
-        80,
-        90,
-        100
-      ],
-      "batentes": [
-        "10 a 15",
-        "13 a 18",
-        "16 a 21",
-        "19 a 24",
-        "22 a 27",
-        "10 a 15 (MPD)",
-        "13 a 18 (MDP)",
-        "16 a 21 (MDP)",
-        "19 a 24 (MDP)",
-        "22 a 27 (MDP)"
-      ],
-      "variacoes": [
-        {
-          "largura": 60,
-          "batente": "10 a 15",
-          "preco": 1150,
-          "id": "393777709"
-        },
-        {
-          "largura": 60,
-          "batente": "13 a 18",
-          "preco": 1200,
-          "id": "393777712"
-        },
-        {
-          "largura": 60,
-          "batente": "16 a 21",
-          "preco": 1255,
-          "id": "393777715"
-        },
-        {
-          "largura": 60,
-          "batente": "19 a 24",
-          "preco": 1310,
-          "id": "393777718"
-        },
-        {
-          "largura": 60,
-          "batente": "22 a 27",
-          "preco": 1360,
-          "id": "393777721"
-        },
-        {
-          "largura": 70,
-          "batente": "10 a 15",
-          "preco": 1160,
-          "id": "393786026"
-        },
-        {
-          "largura": 70,
-          "batente": "13 a 18",
-          "preco": 1210,
-          "id": "393786029"
-        },
-        {
-          "largura": 70,
-          "batente": "16 a 21",
-          "preco": 1265,
-          "id": "393786032"
-        },
-        {
-          "largura": 70,
-          "batente": "19 a 24",
-          "preco": 1320,
-          "id": "393786036"
-        },
-        {
-          "largura": 70,
-          "batente": "22 a 27",
-          "preco": 1370,
-          "id": "393786039"
-        },
-        {
-          "largura": 80,
-          "batente": "10 a 15",
-          "preco": 1170,
-          "id": "393786042"
-        },
-        {
-          "largura": 80,
-          "batente": "13 a 18",
-          "preco": 1225,
-          "id": "393786045"
-        },
-        {
-          "largura": 80,
-          "batente": "16 a 21",
-          "preco": 1275,
-          "id": "393786048"
-        },
-        {
-          "largura": 80,
-          "batente": "19 a 24",
-          "preco": 1330,
-          "id": "393786051"
-        },
-        {
-          "largura": 80,
-          "batente": "22 a 27",
-          "preco": 1380,
-          "id": "393786054"
-        },
-        {
-          "largura": 90,
-          "batente": "10 a 15",
-          "preco": 1210,
-          "id": "393786058"
-        },
-        {
-          "largura": 90,
-          "batente": "13 a 18",
-          "preco": 1260,
-          "id": "393786062"
-        },
-        {
-          "largura": 90,
-          "batente": "16 a 21",
-          "preco": 1315,
-          "id": "393786067"
-        },
-        {
-          "largura": 90,
-          "batente": "19 a 24",
-          "preco": 1370,
-          "id": "393786070"
-        },
-        {
-          "largura": 90,
-          "batente": "22 a 27",
-          "preco": 1420,
-          "id": "393786073"
-        },
-        {
-          "largura": 100,
-          "batente": "10 a 15 (MPD)",
-          "preco": 1535,
-          "id": "393786076"
-        },
-        {
-          "largura": 100,
-          "batente": "13 a 18 (MDP)",
-          "preco": 1590,
-          "id": "393786079"
-        },
-        {
-          "largura": 100,
-          "batente": "16 a 21 (MDP)",
-          "preco": 1640,
-          "id": "393786082"
-        },
-        {
-          "largura": 100,
-          "batente": "19 a 24 (MDP)",
-          "preco": 1690,
-          "id": "393786085"
-        },
-        {
-          "largura": 100,
-          "batente": "22 a 27 (MDP)",
-          "preco": 1745,
-          "id": "393786088"
-        }
-      ]
+      "slug": "madeira-curupixa",
+      "nome": "Curupixá",
+      "nomeCompleto": "Curupixá",
+      "material": "Madeira Curupixá",
+      "hex": "#C27A3A",
+      "foto": "/images/fotos/madeira-curupixa.webp",
+      "destaque": null,
+      "beneficios": [],
+      "prazo": null,
+      "disponivel": false,
+      "precoBase": null,
+      "correr": [],
+      "larguras": [],
+      "batentes": [],
+      "variacoes": []
+    },
+    {
+      "slug": "tauari-lisa",
+      "nome": "Tauari Lisa",
+      "nomeCompleto": "Tauari Lisa",
+      "material": "Madeira Tauari",
+      "hex": "#8A4B22",
+      "foto": "/images/fotos/tauari-lisa.webp",
+      "destaque": null,
+      "beneficios": [],
+      "prazo": null,
+      "disponivel": false,
+      "precoBase": null,
+      "correr": [],
+      "larguras": [],
+      "batentes": [],
+      "variacoes": []
+    },
+    {
+      "slug": "tauari-frisada",
+      "nome": "Tauari Frisada",
+      "nomeCompleto": "Tauari Frisada",
+      "material": "Madeira Tauari",
+      "hex": "#7A3F1B",
+      "foto": "/images/fotos/tauari-frisada.webp",
+      "destaque": null,
+      "beneficios": [],
+      "prazo": null,
+      "disponivel": false,
+      "precoBase": null,
+      "correr": [],
+      "larguras": [],
+      "batentes": [],
+      "variacoes": []
     },
     {
       "slug": "cedro-rosso",
@@ -602,9 +699,13 @@
       "nomeCompleto": "Cedro Rosso",
       "material": "Revestimento Melamínico Amadeirado",
       "hex": "#8B4513",
+      "foto": null,
+      "destaque": null,
+      "beneficios": [],
+      "prazo": null,
       "disponivel": false,
       "precoBase": null,
-      "adicionalCorrer": 0,
+      "correr": [],
       "larguras": [],
       "batentes": [],
       "variacoes": []
@@ -615,9 +716,13 @@
       "nomeCompleto": "Louro Freijó",
       "material": "Revestimento Melamínico Amadeirado",
       "hex": "#C4A35A",
+      "foto": null,
+      "destaque": null,
+      "beneficios": [],
+      "prazo": null,
       "disponivel": false,
       "precoBase": null,
-      "adicionalCorrer": 0,
+      "correr": [],
       "larguras": [],
       "batentes": [],
       "variacoes": []
@@ -628,9 +733,13 @@
       "nomeCompleto": "Preto",
       "material": "Revestimento Renolit",
       "hex": "#1A1A1A",
+      "foto": null,
+      "destaque": null,
+      "beneficios": [],
+      "prazo": null,
       "disponivel": false,
       "precoBase": null,
-      "adicionalCorrer": 0,
+      "correr": [],
       "larguras": [],
       "batentes": [],
       "variacoes": []
@@ -641,9 +750,13 @@
       "nomeCompleto": "Cinza Chumbo",
       "material": "Revestimento PET",
       "hex": "#36454F",
+      "foto": null,
+      "destaque": null,
+      "beneficios": [],
+      "prazo": null,
       "disponivel": false,
       "precoBase": null,
-      "adicionalCorrer": 0,
+      "correr": [],
       "larguras": [],
       "batentes": [],
       "variacoes": []
@@ -654,9 +767,13 @@
       "nomeCompleto": "Cinza Claro",
       "material": "Revestimento PET",
       "hex": "#A9A9A9",
+      "foto": null,
+      "destaque": null,
+      "beneficios": [],
+      "prazo": null,
       "disponivel": false,
       "precoBase": null,
-      "adicionalCorrer": 0,
+      "correr": [],
       "larguras": [],
       "batentes": [],
       "variacoes": []
@@ -667,9 +784,13 @@
       "nomeCompleto": "Cuprum",
       "material": "Flexy",
       "hex": "#B87333",
+      "foto": null,
+      "destaque": null,
+      "beneficios": [],
+      "prazo": null,
       "disponivel": false,
       "precoBase": null,
-      "adicionalCorrer": 0,
+      "correr": [],
       "larguras": [],
       "batentes": [],
       "variacoes": []
@@ -680,9 +801,13 @@
       "nomeCompleto": "Azurita",
       "material": "Flexy",
       "hex": "#1E3A5F",
+      "foto": null,
+      "destaque": null,
+      "beneficios": [],
+      "prazo": null,
       "disponivel": false,
       "precoBase": null,
-      "adicionalCorrer": 0,
+      "correr": [],
       "larguras": [],
       "batentes": [],
       "variacoes": []
@@ -693,9 +818,13 @@
       "nomeCompleto": "Paládio",
       "material": "Flexy",
       "hex": "#BEC2CB",
+      "foto": null,
+      "destaque": null,
+      "beneficios": [],
+      "prazo": null,
       "disponivel": false,
       "precoBase": null,
-      "adicionalCorrer": 0,
+      "correr": [],
       "larguras": [],
       "batentes": [],
       "variacoes": []
@@ -706,9 +835,13 @@
       "nomeCompleto": "Malaquita",
       "material": "Flexy",
       "hex": "#0B6623",
+      "foto": null,
+      "destaque": null,
+      "beneficios": [],
+      "prazo": null,
       "disponivel": false,
       "precoBase": null,
-      "adicionalCorrer": 0,
+      "correr": [],
       "larguras": [],
       "batentes": [],
       "variacoes": []
@@ -719,9 +852,13 @@
       "nomeCompleto": "Alabastro",
       "material": "Flexy",
       "hex": "#F2E8D4",
+      "foto": null,
+      "destaque": null,
+      "beneficios": [],
+      "prazo": null,
       "disponivel": false,
       "precoBase": null,
-      "adicionalCorrer": 0,
+      "correr": [],
       "larguras": [],
       "batentes": [],
       "variacoes": []
@@ -729,79 +866,105 @@
   ],
   "fechaduras": [
     {
-      "id": "roseta-quadrada",
-      "nome": "813/35 Roseta Quadrada 1 Interna Inox",
-      "nomeCompleto": "Stam 813/35 Roseta Quadrada 1 Inox",
-      "preco": 110,
+      "id": "padrao",
+      "nome": "Stam Standard 35",
+      "tipo": "giro",
       "adicional": 0,
-      "foto": "/images/fechadura-813-35.webp"
+      "foto": "/images/catalogo/fechadura-padrao.jpg"
     },
     {
-      "id": "roseta-redonda",
-      "nome": "813/21 Roseta Redonda Interna Inox",
-      "nomeCompleto": "Stam 813/21 Roseta Redonda Inox",
-      "preco": 80,
-      "adicional": -30,
-      "foto": "/images/fechadura-813-21.webp"
-    },
-    {
-      "id": "roseta-redonda-escovada",
-      "nome": "813/39 Roseta Redonda Interna Inox Escovado",
-      "nomeCompleto": "Stam 813/39 Roseta Redonda Inox Escovado",
-      "preco": 170,
-      "adicional": 60,
-      "foto": "/images/fechadura-813-39.webp"
+      "id": "classic-3900",
+      "nome": "Classic 3900",
+      "tipo": "giro",
+      "adicional": 40,
+      "foto": "/images/catalogo/fechadura-classic-3900.jpg"
     },
     {
       "id": "home-ix310",
-      "nome": "Home ix310 Roseta Redonda Externa Inox Escovado",
-      "nomeCompleto": "Home ix310 Roseta Redonda Inox Escovado",
-      "preco": 180,
-      "adicional": 70,
-      "foto": "/images/fechadura-ix310.webp"
+      "nome": "Home IX310",
+      "tipo": "giro",
+      "adicional": 60,
+      "foto": "/images/catalogo/fechadura-home-ix310.webp"
+    },
+    {
+      "id": "home-ix290",
+      "nome": "Home IX290",
+      "tipo": "giro",
+      "adicional": 90,
+      "foto": "/images/catalogo/fechadura-home-ix290.jpg"
+    },
+    {
+      "id": "1006s-wc-p-embutido",
+      "nome": "1006s WC P. Embutido",
+      "tipo": "correr",
+      "adicional": 0,
+      "foto": "/images/catalogo/fechadura-1006s-wc-p-embutido.jpg"
+    },
+    {
+      "id": "1005-trinco-rolete",
+      "nome": "1005 Trinco Rolete",
+      "tipo": "giro",
+      "adicional": 0,
+      "foto": "/images/catalogo/fechadura-1005-trinco-rolete.jpg"
+    },
+    {
+      "id": "correr-905-rq1-quadrada",
+      "nome": "Correr 905 RQ1 (Quadrada)",
+      "tipo": "correr",
+      "adicional": 0,
+      "foto": "/images/catalogo/fechadura-correr-905-rq1-quadrada.jpg"
+    },
+    {
+      "id": "correr-905-rq1-redonda",
+      "nome": "Correr 905 RQ1 (Redonda)",
+      "tipo": "correr",
+      "adicional": 0,
+      "foto": "/images/catalogo/fechadura-correr-905-rq1-redonda.jpg"
     }
   ],
   "descontoSemFechadura": 70,
-  "instalacoes": {
-    "correr": {
-      "id": "394339871",
-      "nome": "Instalação Porta Interna de Correr",
-      "preco": 350
+  "extras": [
+    {
+      "id": "prende-porta-magnetico",
+      "nome": "Prende Porta Magnético",
+      "preco": 40,
+      "foto": "/images/catalogo/extra-prende-porta-magnetico.jpg"
     },
+    {
+      "id": "puxador-40cm-inox-tubular-escovado",
+      "nome": "Puxador 40cm Inox Tubular Escovado",
+      "preco": 90,
+      "foto": "/images/catalogo/extra-puxador-40cm-inox-tubular-escovado.jpg"
+    },
+    {
+      "id": "puxador-80cm-barra-inox-polido",
+      "nome": "Puxador 80cm Barra Inox Polido",
+      "preco": 235,
+      "foto": "/images/catalogo/extra-puxador-80cm-barra-inox-polido.jpg"
+    },
+    {
+      "id": "puxador-100cm-barra-inox-polido",
+      "nome": "Puxador 100cm Barra Inox Polido",
+      "preco": 265,
+      "foto": "/images/catalogo/extra-puxador-100cm-barra-inox-polido.jpg"
+    },
+    {
+      "id": "1010-tetra-auxiliar",
+      "nome": "1010 Tetra Auxiliar",
+      "preco": 120,
+      "foto": "/images/catalogo/extra-1010-tetra-auxiliar.jpg"
+    }
+  ],
+  "instalacoes": {
     "giro": {
-      "id": "394339818",
+      "id": "giro",
       "nome": "Instalação Porta Interna de Giro",
       "preco": 300
+    },
+    "correr": {
+      "id": "correr",
+      "nome": "Instalação Porta Interna de Correr",
+      "preco": 350
     }
-  },
-  "batenteAvulso": {
-    "nome": "Batentes e Vistas em Tauari",
-    "opcoes": [
-      {
-        "id": "343344586",
-        "espessura": "14cm",
-        "preco": 310
-      },
-      {
-        "id": "343344591",
-        "espessura": "16cm",
-        "preco": 330
-      },
-      {
-        "id": "343344598",
-        "espessura": "18cm",
-        "preco": 350
-      },
-      {
-        "id": "343344602",
-        "espessura": "20cm",
-        "preco": 370
-      }
-    ]
-  },
-  "prendePorta": {
-    "id": "354662383",
-    "nome": "Prende Porta Magnético Slim",
-    "preco": 45
   }
 }

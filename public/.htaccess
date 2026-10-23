@@ -1,3 +1,12 @@
+# Sempre HTTPS e sem "www" (uma URL só pro Google; e o configurador precisa de
+# HTTPS). A 2ª condição evita loop se a HostGator estiver atrás de proxy.
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
 # Páginas de erro do Apache usam a tela de erro do site (app/not-found.tsx -> 404.html),
 # pra o cliente sempre ter como voltar pra home.
 ErrorDocument 400 /404.html
@@ -7,3 +16,24 @@ ErrorDocument 404 /404.html
 ErrorDocument 500 /404.html
 ErrorDocument 502 /404.html
 ErrorDocument 503 /404.html
+
+# Cache: /_next/static tem hash no nome (pode ser eterno); imagens 30 dias
+# (trocar foto com o mesmo nome demora até 30 dias pra quem já visitou);
+# HTML sempre revalida, senão o cliente vê preço velho.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml text/plain application/xml
+</IfModule>

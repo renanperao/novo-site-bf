@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { WhatsappFab } from "@/components/whatsapp-fab"
 import { SmoothScroll } from "@/components/smooth-scroll"
+import { SITE_URL } from "@/lib/site"
 import "./globals.css"
 
 const geist = Geist({
@@ -17,41 +18,48 @@ const geistMono = Geist_Mono({
   display: "swap",
 })
 
+const TITULO = "Kit Porta Pronta Instalada em Florianópolis e Região | Brasil Forte"
+const DESCRICAO =
+  "Kit porta pronta branca com batente, vistas e fechadura, com medição e instalação de portas pela nossa equipe. Branco UV a pronta entrega. Grande Florianópolis e Vale do Itajaí. Orçamento online na hora."
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://brasilforte.com"),
-  title: "Brasil Forte Portas — Portas de alto padrão para arquitetura",
-  description:
-    "Especialistas em portas resistentes à maresia, cupim e umidade. Kits completos de PET, MDF Ultra e Madeira Maciça com instalação própria em toda a Grande Florianópolis e Litoral de SC.",
+  metadataBase: new URL(SITE_URL),
+  title: { default: TITULO, template: "%s | Brasil Forte Portas" },
+  description: DESCRICAO,
   keywords: [
-    "Portas internas Biguaçu",
-    "portas resistentes a maresia",
-    "instalação de portas SC",
-    "MDF Ultra",
-    "portas PET Itapema",
+    "porta pronta",
+    "kit porta pronta",
+    "kit porta pronta instalada",
+    "porta branca",
+    "portas brancas instaladas",
+    "instalação de porta",
+    "instalação de portas",
+    "portas instaladas",
+    "porta pronta Florianópolis",
+    "porta pronta São José",
+    "porta pronta Palhoça",
+    "porta pronta Biguaçu",
+    "porta pronta Itajaí",
+    "porta pronta Balneário Camboriú",
+    "porta MDF Ultra",
+    "porta branca PET",
   ],
+  alternates: { canonical: "/" },
+  robots: { index: true, follow: true },
   openGraph: {
     type: "website",
-    url: "https://brasilforte.com",
+    url: "/",
     siteName: "Brasil Forte Portas",
-    title: "Brasil Forte Portas — Portas de alto padrão para arquitetura",
-    description:
-      "Kits completos de PET, MDF Ultra e Madeira Maciça com instalação técnica em toda a Grande Florianópolis e Litoral de SC.",
-    images: [
-      {
-        url: "/images/hero-apartamento-minimalista.png",
-        width: 1280,
-        height: 944,
-        alt: "Brasil Forte Portas — Porta laqueada em ambiente residencial",
-      },
-    ],
+    title: TITULO,
+    description: DESCRICAO,
+    images: [{ url: "/images/og.jpg", width: 1200, height: 630, alt: "Kit porta pronta branca instalada" }],
     locale: "pt_BR",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Brasil Forte Portas — Portas de alto padrão para arquitetura",
-    description:
-      "Kits completos de PET, MDF Ultra e Madeira Maciça com instalação técnica em toda a Grande Florianópolis e Litoral de SC.",
-    images: ["/images/hero-apartamento-minimalista.png"],
+    title: TITULO,
+    description: DESCRICAO,
+    images: ["/images/og.jpg"],
   },
   icons: {
     icon: [
