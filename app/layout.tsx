@@ -1,10 +1,17 @@
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
+import Script from "next/script"
 import { Analytics } from "@vercel/analytics/next"
 import { WhatsappFab } from "@/components/whatsapp-fab"
 import { SmoothScroll } from "@/components/smooth-scroll"
 import { SITE_URL } from "@/lib/site"
 import "./globals.css"
+
+// Google Ads. Todo clique em WhatsApp (wa.me) ou telefone (tel:) conta como conversão
+// "contato" quando CONVERSAO_CONTATO tiver o send_to da ação criada no Google Ads
+// (formato "AW-18340286067/xxxxxxxx"). Vazio = só a tag base, sem conversão.
+const GOOGLE_ADS_ID = "AW-18340286067"
+const CONVERSAO_CONTATO = "AW-18340286067/5PhtCL2rlNUcEPOcqqlE"
 
 const geist = Geist({
   subsets: ["latin"],
@@ -80,7 +87,21 @@ export default function RootLayout({
         <SmoothScroll />
         {children}
         <WhatsappFab />
-        {process.env.NODE_ENV === "production" && <Analytics />}
+        {process.env.NODE_ENV === "production" && (
+          <>
+            <Analytics />
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-ads" strategy="afterInteractive">
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+gtag('js',new Date());gtag('config','${GOOGLE_ADS_ID}');
+var conv='${CONVERSAO_CONTATO}';
+if(conv)document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href*="wa.me/"],a[href^="tel:"]');if(a)gtag('event','conversion',{send_to:conv})},true);`}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   )
